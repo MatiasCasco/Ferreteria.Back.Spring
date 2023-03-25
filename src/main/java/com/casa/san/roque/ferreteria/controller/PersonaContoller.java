@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/persona")
 public class PersonaContoller {
-    //probar git y github
+    //probar git y github, ahora segunda prueba
     @Autowired
     private PersonaService service;
     
