@@ -1,11 +1,15 @@
 package com.casa.san.roque.ferreteria.model;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,35 +28,38 @@ public class Persona implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, name = "id")
-    private Long id;
+    @Column(nullable = false, name = "persona_id")
+    private Long personaId;
     
-    @Column(name = "nombre")
-    private String nombre;
+    @Column(name = "persona_nombre")
+    private String personaNombre;
     
-    @Column(name = "apellido")
-    private String apellido;
+    @Column(name = "persona_apellido")
+    private String personaApellido;
     
-    @Column(name = "rol")
-    private int rol;
+    @Column(name = "persona_rol")
+    private int personaRol;
     
-    @Column(name = "password")
-    private String password;
+    @Column(name = "persona_password")
+    private String personaPassword;
     
-    @Column(name = "nombre_razon_social")
-    private String nombreRazonSocial;
+    @Column(name = "persona_nombre_razon_social")
+    private String personaNombreRazonSocial;
     
-    @Column(name = "ruc")
-    private String ruc;
+    @Column(name = "persona_ruc")
+    private String personaRuc;
     
-    @Column(name = "direccion")
-    private String direccion;
+    @Column(name = "persona_direccion")
+    private String personaDireccion;
     
-    @Column(name = "celular")
-    private String celular;
+    @Column(name = "persona_celular")
+    private String personaCelular;
     
-    @Column(name = "email")
-    private String email;
+    @Column(name = "persona_email")
+    private String personaEmail;
+    
+    @OneToMany(mappedBy = "persona", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    List<FacturaVenta> facturas;
     
     private static final long serialVersionUID = 1L;
 }

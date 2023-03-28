@@ -32,19 +32,19 @@ public class PersonaServiceImpl implements PersonaService{
     @Override
     public Persona updatePersona(Persona persona) {
         Persona oldPersona = null;
-        Optional<Persona> optionalPersona = repository.findById(persona.getId());
+        Optional<Persona> optionalPersona = repository.findById(persona.getPersonaId());
         if (optionalPersona.isPresent()){
             oldPersona = optionalPersona.get();
-            oldPersona.setApellido(persona.getApellido());
-            oldPersona.setCelular(persona.getCelular());
-            oldPersona.setDireccion(persona.getDireccion());
-            oldPersona.setEmail(persona.getEmail());
-            oldPersona.setId(persona.getId());
-            oldPersona.setNombre(persona.getNombre());
-            oldPersona.setNombreRazonSocial(persona.getNombreRazonSocial());
-            oldPersona.setPassword(persona.getPassword());
-            oldPersona.setRol(0);
-            oldPersona.setRuc(persona.getRuc());
+            oldPersona.setPersonaApellido(persona.getPersonaApellido());
+            oldPersona.setPersonaCelular(persona.getPersonaCelular());
+            oldPersona.setPersonaDireccion(persona.getPersonaDireccion());
+            oldPersona.setPersonaEmail(persona.getPersonaEmail());
+            oldPersona.setPersonaId(persona.getPersonaId());
+            oldPersona.setPersonaNombre(persona.getPersonaNombre());
+            oldPersona.setPersonaNombreRazonSocial(persona.getPersonaNombreRazonSocial());
+            oldPersona.setPersonaPassword(persona.getPersonaPassword());
+            oldPersona.setPersonaRol(0);
+            oldPersona.setPersonaRuc(persona.getPersonaRuc());
             repository.save(oldPersona);
         } else {
             return new Persona();
@@ -73,13 +73,13 @@ public class PersonaServiceImpl implements PersonaService{
     @Override
     @Transactional(readOnly = true)
     public Persona findByRuc(String ruc) {
-        return repository.findByRuc(ruc);
+        return repository.findByPersonaRuc(ruc);
     }
     
     @Override
     @Transactional(readOnly = true)
     public List<Persona> findByNombreAndApellido(String nombre, String apellido) {
-        return repository.findByNombreAndApellido(nombre, apellido);
+        return repository.findByPersonaNombreAndPersonaApellido(nombre, apellido);
     }
     
     @Override
