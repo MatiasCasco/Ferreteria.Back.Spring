@@ -21,9 +21,9 @@ public interface PersonaService {
 
     public Persona getPersonaById(Long id);
 
-    public Persona findByRuc(String ruc);
+    public Persona findByRucOCi(String rucOCi);
 
-    public List<Persona> findByNombreAndApellido(String nombre, String Apellido);
+    public List<Persona> findByPersonaNombreRazonSocial(String personaNombreRazonSocial);
 
     public List<Persona> findAll();
 }

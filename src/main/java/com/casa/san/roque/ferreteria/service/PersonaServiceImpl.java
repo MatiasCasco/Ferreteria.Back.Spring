@@ -35,16 +35,14 @@ public class PersonaServiceImpl implements PersonaService{
         Optional<Persona> optionalPersona = repository.findById(persona.getPersonaId());
         if (optionalPersona.isPresent()){
             oldPersona = optionalPersona.get();
-            oldPersona.setPersonaApellido(persona.getPersonaApellido());
             oldPersona.setPersonaCelular(persona.getPersonaCelular());
             oldPersona.setPersonaDireccion(persona.getPersonaDireccion());
             oldPersona.setPersonaEmail(persona.getPersonaEmail());
             oldPersona.setPersonaId(persona.getPersonaId());
-            oldPersona.setPersonaNombre(persona.getPersonaNombre());
             oldPersona.setPersonaNombreRazonSocial(persona.getPersonaNombreRazonSocial());
             oldPersona.setPersonaPassword(persona.getPersonaPassword());
             oldPersona.setPersonaRol(0);
-            oldPersona.setPersonaRuc(persona.getPersonaRuc());
+            oldPersona.setPersonaRucOCi(persona.getPersonaRucOCi());
             repository.save(oldPersona);
         } else {
             return new Persona();
@@ -72,14 +70,14 @@ public class PersonaServiceImpl implements PersonaService{
     
     @Override
     @Transactional(readOnly = true)
-    public Persona findByRuc(String ruc) {
-        return repository.findByPersonaRuc(ruc);
+    public Persona findByRucOCi(String rucOCi) {
+        return repository.findByPersonaRucOCi(rucOCi);
     }
     
     @Override
     @Transactional(readOnly = true)
-    public List<Persona> findByNombreAndApellido(String nombre, String apellido) {
-        return repository.findByPersonaNombreAndPersonaApellido(nombre, apellido);
+    public List<Persona> findByPersonaNombreRazonSocial(String personaNombreRazonSocial) {
+        return repository.findByPersonaNombreRazonSocial(personaNombreRazonSocial);
     }
     
     @Override

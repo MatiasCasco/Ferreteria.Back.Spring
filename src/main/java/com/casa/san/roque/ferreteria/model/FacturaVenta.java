@@ -42,7 +42,7 @@ public class FacturaVenta implements Serializable {
     private Persona persona;
     
     @ManyToOne
-    @JoinColumn(name = "persona_id")
+    @JoinColumn(name = "empleado_id")
     private Persona empleado;
     
     @Column(name = "factura_venta_fecha")

@@ -13,8 +13,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PersonaRepository extends JpaRepository<Persona, Serializable> {
 
-    public Persona findByPersonaRuc(String ruc);
-
-    public List<Persona> findByPersonaNombreAndPersonaApellido(String nombre, String apellido);
+    public Persona findByPersonaRucOCi(String rucOCi);
+    
+    public List<Persona> findByPersonaNombreRazonSocial(String PersonaNombreRazonSocial);
     
 }

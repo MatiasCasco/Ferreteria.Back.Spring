@@ -30,13 +30,7 @@ public class Persona implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, name = "persona_id")
     private Long personaId;
-    
-    @Column(name = "persona_nombre")
-    private String personaNombre;
-    
-    @Column(name = "persona_apellido")
-    private String personaApellido;
-    
+
     @Column(name = "persona_rol")
     private int personaRol;
     
@@ -46,8 +40,8 @@ public class Persona implements Serializable {
     @Column(name = "persona_nombre_razon_social")
     private String personaNombreRazonSocial;
     
-    @Column(name = "persona_ruc")
-    private String personaRuc;
+    @Column(name = "persona_ruc_ci")
+    private String personaRucOCi;
     
     @Column(name = "persona_direccion")
     private String personaDireccion;

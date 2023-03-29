@@ -54,15 +54,14 @@ public class PersonaContoller {
         return service.findAll();
     }
     
-    @GetMapping("/persona/{ruc}")
-    public Persona getPersonaByRuc(@PathVariable(name = "ruc", required = true) String ruc) {
-        return service.findByRuc(ruc);
+    @GetMapping("/persona/{rucOci}")
+    public Persona getPersonaByRucOCi(@PathVariable(name = "rucOci", required = true) String rucOci) {
+        return service.findByRucOCi(rucOci);
     }
     
-    @GetMapping("/persona/name/{nombre}/lastName/{apellido}")
-    public List<Persona> getPersonaByRuc(@PathVariable(
-            name = "nombre", required = true) String nombre,
-            @PathVariable(name = "apellido", required = true) String apellido) {
-        return service.findByNombreAndApellido(nombre, apellido);
+    @GetMapping("/persona/razon_social/{razon}")
+    public List<Persona> getPersonasRazonSocial(@PathVariable(
+            name = "razon", required = true) String razon) {
+        return service.findByPersonaNombreRazonSocial(razon);
     }
 }
