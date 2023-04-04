@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/persona")
-public class PersonaContoller {
+public class PersonaController {
 
     @Autowired
     private PersonaService service;

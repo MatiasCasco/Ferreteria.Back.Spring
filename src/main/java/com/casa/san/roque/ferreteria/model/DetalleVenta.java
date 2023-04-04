@@ -1,4 +1,4 @@
-package com.casa.san.roque.ferreteria.service;
+package com.casa.san.roque.ferreteria.model;
 
 import com.casa.san.roque.ferreteria.model.CaracteristicasProducto;
 import java.io.Serializable;

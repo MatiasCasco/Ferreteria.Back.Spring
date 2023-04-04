@@ -1,6 +1,5 @@
 package com.casa.san.roque.ferreteria.model;
 
-import com.casa.san.roque.ferreteria.service.DetalleVenta;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;

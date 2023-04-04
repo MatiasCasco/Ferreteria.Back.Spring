@@ -3,8 +3,6 @@ package com.casa.san.roque.ferreteria.service;
 
 import com.casa.san.roque.ferreteria.model.Persona;
 import java.util.List;
-import org.springframework.stereotype.Component;
-
 /**
  *
  * @author Matias Casco

@@ -1,5 +1,7 @@
 package com.casa.san.roque.ferreteria.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -9,6 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -31,7 +35,7 @@ public class Producto implements Serializable {
     @Column(nullable = false, name = "producto_id")
     private Long productoId;
     
-    @Column(name = "producto_name")
+    @Column(name = "producto_nombre")
     private String productoNombre;
     
     @Column(name = "producto_iva")
@@ -46,6 +50,12 @@ public class Producto implements Serializable {
     @Column(name = "producto_precio")
     private double productoPrecio;
     
+    @JsonView
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
+    
+    @JsonIgnore
     @OneToMany(mappedBy = "producto", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    List<CaracteristicasProducto> caracteristicas;
+    private List<CaracteristicasProducto> caracteristicas;
 }

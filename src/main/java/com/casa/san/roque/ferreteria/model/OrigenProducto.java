@@ -1,5 +1,7 @@
 package com.casa.san.roque.ferreteria.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 import java.io.Serializable;
 import java.util.Calendar;
 import javax.persistence.CascadeType;
@@ -36,11 +38,13 @@ public class OrigenProducto implements Serializable {
     @Column(nullable = false, name = "origen_producto_id")
     private Long OrigenProductoId;
     
+    @JsonView
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "empresa_id")       
     private Empresa empresa; 
     
-    @OneToOne
+    @JsonView
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "caracteristicas_producto_id")
     private CaracteristicasProducto caracteristicasProducto;
     
