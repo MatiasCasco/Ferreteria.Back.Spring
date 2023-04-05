@@ -14,12 +14,28 @@ import org.springframework.data.repository.query.Param;
  */
 public interface OrigenProductoRepository extends JpaRepository<OrigenProducto, Serializable> {
 
-    List<OrigenProducto> findByCaracteristicasProducto_CaracteristicasProductoId(Long caracteristicasProductoId);
-
     @Query("SELECT op FROM OrigenProducto op JOIN FETCH op.empresa"
             + " JOIN FETCH op.caracteristicasProducto cp JOIN FETCH cp.producto p"
             + " JOIN FETCH p.categoria"
             + " WHERE op.caracteristicasProducto.id = :id")
-    List<OrigenProducto> findByIdWithEmpresaAndCaracteristicasProducto(@Param("id") Long id);
-
+    List<OrigenProducto> findByIdCaracteristicasWithEmpresaAndCaracteristicasProducto(@Param("id") Long id);
+    
+    @Query("SELECT op FROM OrigenProducto op JOIN FETCH op.empresa"
+            + " JOIN FETCH op.caracteristicasProducto cp JOIN FETCH cp.producto p"
+            + " JOIN FETCH p.categoria"
+            + " WHERE cp.producto.id = :id")
+    List<OrigenProducto> findBYIdProductoWithEmpresaAndCaracteristicasProducto(@Param("id") Long id);
+    
+    @Query("SELECT op FROM OrigenProducto op JOIN FETCH op.empresa"
+            + " JOIN FETCH op.caracteristicasProducto cp JOIN FETCH cp.producto p"
+            + " JOIN FETCH p.categoria"
+            + " WHERE op.empresa.id = :id")
+    List<OrigenProducto> findBYIdEmpresaWithEmpresaAndCaracteristicasProducto(@Param("id") Long id);
+    
+    @Query("SELECT op FROM OrigenProducto op JOIN FETCH op.empresa"
+            + " JOIN FETCH op.caracteristicasProducto cp JOIN FETCH cp.producto p"
+            + " JOIN FETCH p.categoria"
+            + " WHERE op.empresa.id = :idEmpresa and cp.producto.id = :idProducto")
+    List<OrigenProducto> findBYIdEmpresaAndIdProductoWithEmpresaAndCaracteristicasProducto(@Param("idEmpresa") Long idEmpresa, @Param("idProducto") Long idProducto);
+    
 }

@@ -23,6 +23,25 @@ public class OrigenProductoController {
     @GetMapping("/caracteristicasProducto/id/{id}")
     public List<OrigenProducto> getOrigenProductoByCaracteristicaId(@PathVariable(
             name = "id", required = true) Long id) {
-        return service.findByCaracteristicasProducto(id);
+        return service.findByCaracteristicasProductoId(id);
+    }
+    
+    @GetMapping("/producto/id/{id}")
+    public List<OrigenProducto> getOrigenProductoByProductoId(@PathVariable(
+            name = "id", required = true) Long id) {
+        return service.findByProductoId(id);
+    }
+    
+    @GetMapping("/empresa/id/{id}")
+    public List<OrigenProducto> getOrigenProductoByEmpresaId(@PathVariable(
+            name = "id", required = true) Long id) {
+        return service.findByEmpresaId(id);
+    }
+    
+    @GetMapping("/empresa/id/{idEmpresa}/producto/id/{idProducto}")
+    public List<OrigenProducto> getOrigenProductoByEmpresaIdAndProductoId(
+            @PathVariable(name = "idEmpresa", required = true) Long idEmpresa,
+            @PathVariable(name = "idProducto", required = true) Long idProducto) {
+        return service.findByEmpresaIdAndProductoId(idEmpresa, idProducto);
     }
 }

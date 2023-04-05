@@ -17,10 +17,23 @@ public class OrigenProductoServiceImpl implements OrigenProductoService{
     private OrigenProductoRepository repository;
     
     @Override
-    public List<OrigenProducto> findByCaracteristicasProducto(Long caracteristicasProductoId) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//        return repository.findByCaracteristicasProducto_CaracteristicasProductoId(caracteristicasProductoId);
-        return repository.findByIdWithEmpresaAndCaracteristicasProducto(caracteristicasProductoId);
+    public List<OrigenProducto> findByCaracteristicasProductoId(Long caracteristicasProductoId) {
+        return repository.findByIdCaracteristicasWithEmpresaAndCaracteristicasProducto(caracteristicasProductoId);
+    }
+
+    @Override
+    public List<OrigenProducto> findByProductoId(Long productoId) {
+        return repository.findBYIdProductoWithEmpresaAndCaracteristicasProducto(productoId);
+    }
+
+    @Override
+    public List<OrigenProducto> findByEmpresaId(Long empresaId) {
+        return repository.findBYIdEmpresaWithEmpresaAndCaracteristicasProducto(empresaId);
+    }
+
+    @Override
+    public List<OrigenProducto> findByEmpresaIdAndProductoId(Long empresaId, Long productoId) {
+        return repository.findBYIdEmpresaAndIdProductoWithEmpresaAndCaracteristicasProducto(empresaId, productoId);
     }
     
 }

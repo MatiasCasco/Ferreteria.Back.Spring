@@ -9,6 +9,11 @@ import java.util.List;
  */
 public interface OrigenProductoService {
     
-    List<OrigenProducto> findByCaracteristicasProducto(Long caracteristicasProductoId);
+    List<OrigenProducto> findByCaracteristicasProductoId(Long caracteristicasProductoId);
     
+    List<OrigenProducto> findByProductoId(Long productoId);
+    
+    List<OrigenProducto> findByEmpresaId(Long empresaId);
+    
+    List<OrigenProducto> findByEmpresaIdAndProductoId(Long empresaId, Long productoId);
 }
