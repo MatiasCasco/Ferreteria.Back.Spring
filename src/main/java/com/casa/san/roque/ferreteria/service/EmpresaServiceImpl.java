@@ -1,7 +1,10 @@
 package com.casa.san.roque.ferreteria.service;
 
+import com.casa.san.roque.ferreteria.dao.EmpresaContactoRepository;
 import com.casa.san.roque.ferreteria.dao.EmpresaRepository;
 import com.casa.san.roque.ferreteria.model.entity.Empresa;
+import com.casa.san.roque.ferreteria.model.entity.EmpresaContacto;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +19,15 @@ public class EmpresaServiceImpl implements EmpresaService {
     
     @Autowired
     private EmpresaRepository repository;
+    
+    @Autowired
+    private EmpresaContactoRepository repositoryContactos;
       
     @Override
     public Empresa addEmpresa(Empresa empresa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        repositoryContactos.saveAll(empresa.getEmpresasContactos());
+        repository.save(empresa);
+        return empresa;
     }
 
     @Override
@@ -29,7 +37,38 @@ public class EmpresaServiceImpl implements EmpresaService {
 
     @Override
     public Empresa updateEmpresa(Empresa empresa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Empresa oldEmpresa = null;
+        List <EmpresaContacto> listContactos = new ArrayList<>();
+        Optional<Empresa> optionalEmpresa = repository.findById(empresa.getEmpresaId());
+        if (optionalEmpresa.isPresent()){
+            oldEmpresa = optionalEmpresa.get();
+            oldEmpresa.setEmpresaNombre(empresa.getEmpresaNombre());
+            oldEmpresa.setEmpresaRuc(empresa.getEmpresaRuc());
+            
+            for (EmpresaContacto empresasContacto : empresa.getEmpresasContactos()) {
+                EmpresaContacto oldEmpresaContacto = null;
+                Optional<EmpresaContacto> optionalEmpresaContacto = repositoryContactos.findById(empresasContacto.getEmpresaContactoId());
+                if(optionalEmpresaContacto.isPresent()) {
+                    oldEmpresaContacto = optionalEmpresaContacto.get();
+                    oldEmpresaContacto.setContactoNombre(empresasContacto.getContactoNombre());
+                    oldEmpresaContacto.setContactoEmail(empresasContacto.getContactoEmail());
+                    oldEmpresaContacto.setContactoPhone(empresasContacto.getContactoPhone());
+                    listContactos.add(oldEmpresaContacto);
+                } else {
+                    repositoryContactos.save(optionalEmpresaContacto.get());
+                    oldEmpresaContacto = optionalEmpresaContacto.get();
+                    oldEmpresaContacto.setContactoNombre(empresasContacto.getContactoNombre());
+                    oldEmpresaContacto.setContactoEmail(empresasContacto.getContactoEmail());
+                    oldEmpresaContacto.setContactoPhone(empresasContacto.getContactoPhone());
+                    listContactos.add(oldEmpresaContacto);
+                } 
+            }
+            oldEmpresa.setEmpresasContactos(listContactos);
+            repository.save(oldEmpresa);
+        } else {
+            return new Empresa();
+        }
+        return empresa;
     }
 
     @Override
