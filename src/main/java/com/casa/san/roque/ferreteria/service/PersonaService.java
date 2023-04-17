@@ -24,4 +24,8 @@ public interface PersonaService {
     public List<Persona> findByPersonaNombreRazonSocial(String personaNombreRazonSocial);
 
     public List<Persona> findAll();
+    
+    public List<Persona> getEmpleados();
+    
+    public List<Persona> getClientes();
 }

@@ -85,4 +85,14 @@ public class PersonaServiceImpl implements PersonaService{
     public List<Persona> findAll() {
         return repository.findAll();
     }
+
+    @Override
+    public List<Persona> getEmpleados() {
+        return repository.getEmpleados();
+    }
+
+    @Override
+    public List<Persona> getClientes() {
+        return repository.getClientes();
+    }
 }

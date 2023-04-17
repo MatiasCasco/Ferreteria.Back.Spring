@@ -49,6 +49,16 @@ public class PersonaController {
         return service.getPersonaById(id);
     }
     
+    @GetMapping("/empleados")
+    public List<Persona> getEmpleados(){
+        return service.getEmpleados();
+    }
+    
+    @GetMapping("/clientes")
+    public List<Persona> getClientes(){
+        return service.getClientes();
+    }
+    
     @GetMapping("/all")
     public List<Persona> getAll(){
         return service.findAll();
