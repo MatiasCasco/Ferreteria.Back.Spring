@@ -1,6 +1,6 @@
 package com.casa.san.roque.ferreteria.dao;
 
-import com.casa.san.roque.ferreteria.model.OrigenProducto;
+import com.casa.san.roque.ferreteria.model.entity.OrigenProducto;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;

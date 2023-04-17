@@ -1,7 +1,7 @@
 
 package com.casa.san.roque.ferreteria.service;
 
-import com.casa.san.roque.ferreteria.model.Persona;
+import com.casa.san.roque.ferreteria.model.entity.Persona;
 import java.util.List;
 /**
  *

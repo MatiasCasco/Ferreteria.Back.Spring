@@ -1,4 +1,4 @@
-package com.casa.san.roque.ferreteria.model;
+package com.casa.san.roque.ferreteria.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;

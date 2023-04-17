@@ -1,6 +1,6 @@
-package com.casa.san.roque.ferreteria.model;
+package com.casa.san.roque.ferreteria.model.entity;
 
-import com.casa.san.roque.ferreteria.model.CaracteristicasProducto;
+import com.casa.san.roque.ferreteria.model.entity.CaracteristicasProducto;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;

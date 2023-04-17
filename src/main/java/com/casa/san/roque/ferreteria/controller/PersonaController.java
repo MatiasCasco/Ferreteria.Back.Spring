@@ -1,6 +1,6 @@
 package com.casa.san.roque.ferreteria.controller;
 
-import com.casa.san.roque.ferreteria.model.Persona;
+import com.casa.san.roque.ferreteria.model.entity.Persona;
 import com.casa.san.roque.ferreteria.service.PersonaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

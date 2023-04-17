@@ -1,4 +1,4 @@
-package com.casa.san.roque.ferreteria.model;
+package com.casa.san.roque.ferreteria.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -45,10 +45,10 @@ public class CaracteristicasProducto implements Serializable {
     private OrigenProducto origenProducto;
     
     @Column(name = "marca_id")
-    private int marcaId;
+    private Long marcaId;
     
     @Column(name = "marca_nombre")
-    private int marcaNombre;
+    private String marcaNombre;
     
     @Column(name = "producto_costo")
     private double productoCosto;

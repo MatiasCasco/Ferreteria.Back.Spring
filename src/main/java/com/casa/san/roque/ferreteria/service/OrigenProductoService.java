@@ -1,6 +1,7 @@
 package com.casa.san.roque.ferreteria.service;
 
-import com.casa.san.roque.ferreteria.model.OrigenProducto;
+import com.casa.san.roque.ferreteria.model.entity.OrigenProducto;
+import com.casa.san.roque.ferreteria.model.request.OrigenProductoDTO;
 import java.util.List;
 
 /**
@@ -9,11 +10,25 @@ import java.util.List;
  */
 public interface OrigenProductoService {
     
-    List<OrigenProducto> findByCaracteristicasProductoId(Long caracteristicasProductoId);
+    public OrigenProducto findByOrigenProductoId(Long origenProductoId);
     
-    List<OrigenProducto> findByProductoId(Long productoId);
+    public List<OrigenProducto> findByCaracteristicasProductoId(Long caracteristicasProductoId);
     
-    List<OrigenProducto> findByEmpresaId(Long empresaId);
+    public List<OrigenProducto> findByProductoId(Long productoId);
     
-    List<OrigenProducto> findByEmpresaIdAndProductoId(Long empresaId, Long productoId);
+    public List<OrigenProducto> findByEmpresaId(Long empresaId);
+    
+    public List<OrigenProducto> findByEmpresaIdAndProductoId(Long empresaId, Long productoId);
+    
+    public OrigenProducto addOrigenProducto(OrigenProducto origenProducto);
+    
+    public OrigenProducto addOrigenProduct(OrigenProductoDTO origenProductoDTO);
+
+    public List<OrigenProducto> addOrigenProducts(List<OrigenProductoDTO> origenProductosDTO);
+    
+    public List<OrigenProducto> addOrigenProductos(List<OrigenProducto> origenProductos);
+
+    public OrigenProducto updateOrigenProducto(OrigenProducto origenProducto);
+
+    public String deleteOrigenProducto(Long origenProductoId);
 }

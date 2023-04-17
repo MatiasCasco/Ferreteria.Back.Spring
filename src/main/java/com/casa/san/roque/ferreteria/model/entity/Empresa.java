@@ -1,5 +1,5 @@
 
-package com.casa.san.roque.ferreteria.model;
+package com.casa.san.roque.ferreteria.model.entity;
 
 import java.io.Serializable;
 import java.util.List;
