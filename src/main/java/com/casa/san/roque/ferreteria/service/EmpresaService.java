@@ -13,6 +13,10 @@ public interface EmpresaService {
     
     public Empresa findByEmpresaId(Long empresaId);
     
+    public List<Empresa> findByEmpresaNombre(String empresaNombre);
+    
+    public Empresa findByEmpresaRucOCi(String dataRucOCI);
+    
     public Empresa addEmpresa(Empresa empresa);
 
     public List<Empresa> addEmpresas(List<Empresa> empresas);

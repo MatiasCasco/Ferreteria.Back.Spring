@@ -91,5 +91,25 @@ public class EmpresaServiceImpl implements EmpresaService {
         }
         return response;
     }
+
+    @Override
+    public List<Empresa> findByEmpresaNombre(String empresaNombre) {
+        List<Empresa> response = null;
+        Optional<List<Empresa>> result = repository.findByEmpresaNombre(empresaNombre);
+        if(result.isPresent()){
+            response = result.get();
+        }
+        return response;
+    }
+
+    @Override
+    public Empresa findByEmpresaRucOCi(String dataRucOCI) {
+       Empresa response = null;
+        Optional<Empresa> result = repository.findByRucOCi(dataRucOCI);
+        if(result.isPresent()){
+            response = result.get();
+        }
+        return response; 
+    }
     
 }

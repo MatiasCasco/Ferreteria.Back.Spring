@@ -45,6 +45,18 @@ public class EmpresaController {
         return service.findByEmpresaId(idEmpresa);
     }
     
+    @GetMapping("/empresaByName/{nombreEmpresa}")
+    public List<Empresa> getEmpresaByEmpresaNombre(@PathVariable(
+            name = "nombreEmpresa", required = true) String nombreEmpresa) {
+        return service.findByEmpresaNombre(nombreEmpresa);
+    }
+    
+    @GetMapping("/empresaByRucOrCi/{dataRucOCi}")
+    public Empresa getEmpresaByEmpresaRucOCi(@PathVariable(
+            name = "dataRucOCi", required = true) String dataRucOCi) {
+        return service.findByEmpresaRucOCi(dataRucOCi);
+    }
+    
     @GetMapping("/all")
     public List<Empresa> allProducto() {
         return service.getAll();
