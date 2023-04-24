@@ -38,6 +38,7 @@ public class FacturaVenta implements Serializable {
     private String facturaCondicion;
     
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_id")
     private Persona persona;
     
     @ManyToOne
@@ -59,7 +60,6 @@ public class FacturaVenta implements Serializable {
     @Column(name = "factura_venta_iva")
     private double facturaVentaIva;
     
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "detalle_venta_id")        
-    List<DetalleVenta> detalleVenta;
+    @OneToMany(mappedBy = "facturaVenta", fetch = FetchType.LAZY, cascade = CascadeType.ALL)       
+    private List<DetalleVenta> detalleVenta;
 }
