@@ -21,7 +21,14 @@ public class FacturaVentaController {
     @Autowired
     private FacturaVentaService service;
     
-     @GetMapping("/FacturasByClienteAndEmpleado/{idCliente}/{idEmpleado}")
+     @GetMapping("/FacturaById/{idFactura}")
+    public FacturaVentaDTO findFacturaById(
+            @PathVariable(name = "idFactura", required = true) Long idFactura
+    ) throws Exception{
+        return service.findFacturaById(idFactura);
+    }
+    
+    @GetMapping("/FacturasByClienteAndEmpleado/{idCliente}/{idEmpleado}")
     public List<FacturaVentaDTO> findFacturaByClienteByEmpleado(
             @PathVariable(name = "idCliente", required = true) Long idCliente,
             @PathVariable(name = "idEmpleado", required = true) Long idEmpleado
@@ -32,6 +39,11 @@ public class FacturaVentaController {
     @GetMapping("/FacturasByCliente/{idCliente}")
     public List<FacturaVentaDTO> findFacturasByCliente(@PathVariable(name = "idCliente", required = true) Long idCliente) throws Exception{
         return service.getFacturasByCliente(idCliente);
+    }
+    
+    @GetMapping("/FacturasPendientesByEmpleado/{idEmpleado}")
+    public List<FacturaVentaDTO> findFacturasPendientesByEmpleado(@PathVariable(name = "idEmpleado", required = true) Long idEmpleado) throws Exception{
+        return service.FacturasPendientesBYEmpleado(idEmpleado);
     }
     
     @GetMapping("/FacturasByEmpleado/{idEmpleado}")

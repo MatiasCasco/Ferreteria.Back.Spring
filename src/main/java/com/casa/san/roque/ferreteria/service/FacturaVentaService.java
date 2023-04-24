@@ -10,9 +10,9 @@ import java.util.List;
  */
 public interface FacturaVentaService {
     
-    public List<FacturaVentaDTO> FacturasPendientes(Long idEmpleado) throws Exception;
+    public List<FacturaVentaDTO> FacturasPendientesBYEmpleado(Long idEmpleado) throws Exception;
      
-     public FacturaVentaDTO getFactura(Long idFactura) throws Exception;
+     public FacturaVentaDTO findFacturaById(Long idFactura) throws Exception;
      
      public List<FacturaVentaDTO> findLast(Long idEmpleado, Long idCliente) throws Exception;
      

@@ -14,6 +14,12 @@ import org.springframework.data.repository.query.Param;
 public interface FacturaVentaRepository extends JpaRepository<FacturaVenta, Serializable> {
     @Query("SELECT fv FROM FacturaVenta fv JOIN FETCH fv.detalleVenta dv"
             + " JOIN FETCH fv.persona c JOIN FETCH fv.empleado e"
+            + " WHERE e.id = :empleadoId AND UPPER(fv.facturaVentaEstado) like UPPER('pendiente')")
+    List<FacturaVenta> FacturasPendientesBYEmpleado(@Param("empleadoId") Long empleadoId);
+
+    
+    @Query("SELECT fv FROM FacturaVenta fv JOIN FETCH fv.detalleVenta dv"
+            + " JOIN FETCH fv.persona c JOIN FETCH fv.empleado e"
             + " WHERE e.id = :empleadoId")
     List<FacturaVenta> findFacturasByEmpleado(@Param("empleadoId") Long empleadoId);
 

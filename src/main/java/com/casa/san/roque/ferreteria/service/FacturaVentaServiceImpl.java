@@ -7,6 +7,7 @@ import com.casa.san.roque.ferreteria.model.mapper.FacturaVentaMapper;
 import com.casa.san.roque.ferreteria.model.response.FacturaVentaDTO;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,13 +25,23 @@ public class FacturaVentaServiceImpl implements FacturaVentaService {
     private FacturaVentaMapper mapperFactura;
     
     @Override
-    public List<FacturaVentaDTO> FacturasPendientes(Long idEmpleado) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<FacturaVentaDTO> FacturasPendientesBYEmpleado(Long idEmpleado) throws Exception {
+        List<FacturaVentaDTO> listFacturas = new ArrayList<FacturaVentaDTO>();
+        List<FacturaVenta> list = repository.FacturasPendientesBYEmpleado(idEmpleado);
+        for (FacturaVenta factura : list) {
+            listFacturas.add(mapperFactura.toFacturaVentaDTO(factura));
+        }
+        return listFacturas;
     }
 
     @Override
-    public FacturaVentaDTO getFactura(Long idFactura) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public FacturaVentaDTO findFacturaById(Long idFactura) throws Exception {
+        FacturaVentaDTO  facturaVentaDTO = null;
+        Optional<FacturaVenta> optionalFactura = repository.findById(idFactura);
+        if (optionalFactura.isPresent()) {
+            facturaVentaDTO = mapperFactura.toFacturaVentaDTO(optionalFactura.get());
+        }
+        return facturaVentaDTO;
     }
 
     @Override
