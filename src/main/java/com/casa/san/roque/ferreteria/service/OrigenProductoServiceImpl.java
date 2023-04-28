@@ -15,7 +15,7 @@ import com.casa.san.roque.ferreteria.dao.ProductoRepository;
 import com.casa.san.roque.ferreteria.model.entity.CaracteristicasProducto;
 import com.casa.san.roque.ferreteria.model.entity.EmpresaContacto;
 import com.casa.san.roque.ferreteria.model.entity.Producto;
-import com.casa.san.roque.ferreteria.model.request.OrigenProductoDTO;
+import com.casa.san.roque.ferreteria.model.request.OrigenProductoDTORequest;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -132,13 +132,13 @@ public class OrigenProductoServiceImpl implements OrigenProductoService{
     }
 
     @Override
-    public OrigenProducto addOrigenProduct(OrigenProductoDTO origenProductoDTO) {
+    public OrigenProducto addOrigenProduct(OrigenProductoDTORequest origenProductoDTO) {
         OrigenProducto origenProducto = converterOrigenProducto.convertToEntity(origenProductoDTO);
         return repository.save(origenProducto);
     }
 
     @Override
-    public List<OrigenProducto> addOrigenProducts(List<OrigenProductoDTO> origenProductosDTO) {
+    public List<OrigenProducto> addOrigenProducts(List<OrigenProductoDTORequest> origenProductosDTO) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

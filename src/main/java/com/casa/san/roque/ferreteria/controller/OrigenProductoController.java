@@ -1,7 +1,7 @@
 package com.casa.san.roque.ferreteria.controller;
 
 import com.casa.san.roque.ferreteria.model.entity.OrigenProducto;
-import com.casa.san.roque.ferreteria.model.request.OrigenProductoDTO;
+import com.casa.san.roque.ferreteria.model.request.OrigenProductoDTORequest;
 import com.casa.san.roque.ferreteria.service.OrigenProductoService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,12 +36,12 @@ public class OrigenProductoController {
     }
     
     @PostMapping("/addOrigenProduct")
-    public OrigenProducto addOrigenProduct(@RequestBody OrigenProductoDTO origenProductoDTO) {
+    public OrigenProducto addOrigenProduct(@RequestBody OrigenProductoDTORequest origenProductoDTO) {
         return service.addOrigenProduct(origenProductoDTO);
     }
     
     @PostMapping("/addOrigenProducts")
-    public List<OrigenProducto> addOrigenProducts(@RequestBody List<OrigenProductoDTO> origenProductos) {
+    public List<OrigenProducto> addOrigenProducts(@RequestBody List<OrigenProductoDTORequest> origenProductos) {
         return service.addOrigenProducts(origenProductos);
     }
     

@@ -32,4 +32,13 @@ public interface FacturaVentaRepository extends JpaRepository<FacturaVenta, Seri
         + " JOIN FETCH fv.persona c JOIN FETCH fv.empleado e"
         + " WHERE e.id = :empleadoId AND c.id = :clienteId")
     List<FacturaVenta> findLast(@Param("empleadoId") Long empleadoId, @Param("clienteId") Long clienteId);
+    
+    @Query("SELECT fv FROM FacturaVenta fv JOIN FETCH fv.detalleVenta dv"
+        + " JOIN FETCH fv.persona c JOIN FETCH fv.empleado e"
+        + " WHERE e.id = :empleadoId AND fv.facturaVentaEstado LIKE :estado")
+    FacturaVenta findLastFacturaVenta(@Param("empleadoId") Long empleadoId, @Param("estado") String estado);
+    
+    @Query("SELECT fv FROM FacturaVenta fv WHERE fv.empleado.id = :empleadoId AND fv.facturaVentaEstado = 'INSERTANDO' ORDER BY fv.facturaVentaId DESC")
+    FacturaVenta findLastInsertedByEmpleadoId(@Param("empleadoId") Long empleadoId);
+
 }

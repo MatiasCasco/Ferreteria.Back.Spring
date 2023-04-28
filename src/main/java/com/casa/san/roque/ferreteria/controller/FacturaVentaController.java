@@ -1,12 +1,16 @@
 package com.casa.san.roque.ferreteria.controller;
 
+import com.casa.san.roque.ferreteria.converter.ConverterFacturaVenta;
 import com.casa.san.roque.ferreteria.model.entity.FacturaVenta;
-import com.casa.san.roque.ferreteria.model.response.FacturaVentaDTO;
+import com.casa.san.roque.ferreteria.model.request.FacturaVentaDTORequest;
+import com.casa.san.roque.ferreteria.model.response.FacturaVentaDTOResponse;
 import com.casa.san.roque.ferreteria.service.FacturaVentaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,15 +25,25 @@ public class FacturaVentaController {
     @Autowired
     private FacturaVentaService service;
     
-     @GetMapping("/FacturaById/{idFactura}")
-    public FacturaVentaDTO findFacturaById(
+    @Autowired
+    private ConverterFacturaVenta converterFacturaVenta;
+    
+    @PostMapping("/addFacturaVenta")
+    public FacturaVenta addFacturaVenta(@RequestBody FacturaVentaDTORequest facturaVentaDTO) throws Exception {
+        FacturaVenta facturaVenta = new FacturaVenta();
+        facturaVenta = converterFacturaVenta.toFacturaVenta(facturaVentaDTO);
+        return service.addFacturaVenta(facturaVentaDTO); 
+    }
+    
+    @GetMapping("/FacturaById/{idFactura}")
+    public FacturaVentaDTOResponse findFacturaById(
             @PathVariable(name = "idFactura", required = true) Long idFactura
     ) throws Exception{
         return service.findFacturaById(idFactura);
     }
     
     @GetMapping("/FacturasByClienteAndEmpleado/{idCliente}/{idEmpleado}")
-    public List<FacturaVentaDTO> findFacturaByClienteByEmpleado(
+    public List<FacturaVentaDTOResponse> findFacturaByClienteByEmpleado(
             @PathVariable(name = "idCliente", required = true) Long idCliente,
             @PathVariable(name = "idEmpleado", required = true) Long idEmpleado
             ) throws Exception{
@@ -37,22 +51,22 @@ public class FacturaVentaController {
     }
     
     @GetMapping("/FacturasByCliente/{idCliente}")
-    public List<FacturaVentaDTO> findFacturasByCliente(@PathVariable(name = "idCliente", required = true) Long idCliente) throws Exception{
+    public List<FacturaVentaDTOResponse> findFacturasByCliente(@PathVariable(name = "idCliente", required = true) Long idCliente) throws Exception{
         return service.getFacturasByCliente(idCliente);
     }
     
     @GetMapping("/FacturasPendientesByEmpleado/{idEmpleado}")
-    public List<FacturaVentaDTO> findFacturasPendientesByEmpleado(@PathVariable(name = "idEmpleado", required = true) Long idEmpleado) throws Exception{
+    public List<FacturaVentaDTOResponse> findFacturasPendientesByEmpleado(@PathVariable(name = "idEmpleado", required = true) Long idEmpleado) throws Exception{
         return service.FacturasPendientesBYEmpleado(idEmpleado);
     }
     
     @GetMapping("/FacturasByEmpleado/{idEmpleado}")
-    public List<FacturaVentaDTO> findFacturasByEmpleado(@PathVariable(name = "idEmpleado", required = true) Long idEmpleado) throws Exception{
+    public List<FacturaVentaDTOResponse> findFacturasByEmpleado(@PathVariable(name = "idEmpleado", required = true) Long idEmpleado) throws Exception{
         return service.findFacturasByEmpleado(idEmpleado);
     }
     
     @GetMapping("/all")
-    public List<FacturaVentaDTO> getALL() throws Exception{
+    public List<FacturaVentaDTOResponse> getALL() throws Exception{
         return service.getAll();
     }
 }

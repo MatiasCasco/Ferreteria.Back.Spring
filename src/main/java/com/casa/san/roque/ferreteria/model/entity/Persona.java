@@ -1,5 +1,6 @@
 package com.casa.san.roque.ferreteria.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -51,7 +52,7 @@ public class Persona implements Serializable {
     
     @Column(name = "persona_email")
     private String personaEmail;
-    
+    @JsonBackReference
     @OneToMany(mappedBy = "persona", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<FacturaVenta> facturas;
     

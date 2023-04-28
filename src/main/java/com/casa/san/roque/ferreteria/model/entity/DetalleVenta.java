@@ -1,6 +1,7 @@
 package com.casa.san.roque.ferreteria.model.entity;
 
 import com.casa.san.roque.ferreteria.model.entity.CaracteristicasProducto;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -31,7 +32,7 @@ public class DetalleVenta implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, name = "detalle_venta_id")
     private Long detalleVentaId;
-    
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "factura_venta_id")
     private FacturaVenta facturaVenta;

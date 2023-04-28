@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrigenProductoDTO { 
+public class OrigenProductoDTORequest { 
     private Long OrigenProductoId;
     private Long empresaId; 
     private Long caracteristicasProductoId;

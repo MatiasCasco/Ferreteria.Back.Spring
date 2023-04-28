@@ -5,7 +5,7 @@ import com.casa.san.roque.ferreteria.dao.EmpresaRepository;
 import com.casa.san.roque.ferreteria.model.entity.CaracteristicasProducto;
 import com.casa.san.roque.ferreteria.model.entity.Empresa;
 import com.casa.san.roque.ferreteria.model.entity.OrigenProducto;
-import com.casa.san.roque.ferreteria.model.request.OrigenProductoDTO;
+import com.casa.san.roque.ferreteria.model.request.OrigenProductoDTORequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +22,7 @@ public class ConverterOrigenProducto {
     @Autowired
     private CaracteristicasProductoRepository caracteristicasProductoRepository;
 
-    public OrigenProducto convertToEntity(OrigenProductoDTO origenProductoDTO) {
+    public OrigenProducto convertToEntity(OrigenProductoDTORequest origenProductoDTO) {
         OrigenProducto origenProducto = new OrigenProducto();
         origenProducto.setPrecioVentaProveedor(origenProductoDTO.getPrecioVentaProveedor());
         

@@ -1,6 +1,7 @@
-package com.casa.san.roque.ferreteria.model.response;
+package com.casa.san.roque.ferreteria.model.request;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Date;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -14,9 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class FacturaVentaDTO {
-     
-    private Long facturaVentaId;
+public class FacturaVentaDTORequest {
        
     private String facturaCondicion;
     
@@ -30,9 +29,10 @@ public class FacturaVentaDTO {
     
     private double facturaVentaMontoTotal;
     
+    @JsonIgnore
     private String facturaVentaEstado;
     
     private double facturaVentaIva;
     
-    private List<DetalleVentaDTO> detalleVenta;
+    private List<DetalleVentaDTORequest> detalleVenta;
 }

@@ -1,7 +1,7 @@
 package com.casa.san.roque.ferreteria.service;
 
 import com.casa.san.roque.ferreteria.model.entity.OrigenProducto;
-import com.casa.san.roque.ferreteria.model.request.OrigenProductoDTO;
+import com.casa.san.roque.ferreteria.model.request.OrigenProductoDTORequest;
 import java.util.List;
 
 /**
@@ -22,9 +22,9 @@ public interface OrigenProductoService {
     
     public OrigenProducto addOrigenProducto(OrigenProducto origenProducto);
     
-    public OrigenProducto addOrigenProduct(OrigenProductoDTO origenProductoDTO);
+    public OrigenProducto addOrigenProduct(OrigenProductoDTORequest origenProductoDTO);
 
-    public List<OrigenProducto> addOrigenProducts(List<OrigenProductoDTO> origenProductosDTO);
+    public List<OrigenProducto> addOrigenProducts(List<OrigenProductoDTORequest> origenProductosDTO);
     
     public List<OrigenProducto> addOrigenProductos(List<OrigenProducto> origenProductos);
 

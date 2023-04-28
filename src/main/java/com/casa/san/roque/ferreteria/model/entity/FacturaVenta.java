@@ -1,5 +1,6 @@
 package com.casa.san.roque.ferreteria.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -36,11 +37,11 @@ public class FacturaVenta implements Serializable {
     
     @Column(name = "factura_condicion")
     private String facturaCondicion;
-    
+    @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id")
     private Persona persona;
-    
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "empleado_id")
     private Persona empleado;
@@ -59,7 +60,7 @@ public class FacturaVenta implements Serializable {
     
     @Column(name = "factura_venta_iva")
     private double facturaVentaIva;
-    
+    @JsonManagedReference
     @OneToMany(mappedBy = "facturaVenta", fetch = FetchType.LAZY, cascade = CascadeType.ALL)       
     private List<DetalleVenta> detalleVenta;
 }
