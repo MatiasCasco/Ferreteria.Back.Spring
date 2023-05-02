@@ -58,8 +58,18 @@ public class FacturaVenta implements Serializable {
     @Column(name = "factura_venta_estado")
     private String facturaVentaEstado;
     
-    @Column(name = "factura_venta_iva")
-    private double facturaVentaIva;
+    @Column(name = "factura_venta_total_exentas")
+    private double facturaVentaTotalExentas;
+    
+    @Column(name = "factura_venta_total_iva5")
+    private double facturaVentaTotalIva5;
+    
+    @Column(name = "factura_venta_total_iva10")
+    private double facturaVentaTotalIva10;
+    
+    @Column(name = "factura_venta_total_iva")
+    private double facturaVentaTotalIva;
+    
     @JsonManagedReference
     @OneToMany(mappedBy = "facturaVenta", fetch = FetchType.LAZY, cascade = CascadeType.ALL)       
     private List<DetalleVenta> detalleVenta;

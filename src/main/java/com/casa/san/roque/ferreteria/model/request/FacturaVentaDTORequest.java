@@ -32,7 +32,13 @@ public class FacturaVentaDTORequest {
     @JsonIgnore
     private String facturaVentaEstado;
     
-    private double facturaVentaIva;
+    private double facturaVentaExentas;
+    
+    private double facturaVentaIva5;
+    
+    private double facturaVentaIva10;
+    
+    private double facturaVentaTotalIva;
     
     private List<DetalleVentaDTORequest> detalleVenta;
 }

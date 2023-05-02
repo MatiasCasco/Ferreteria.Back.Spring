@@ -36,7 +36,10 @@ public class ConverterFacturaVenta {
         facturaVentaDTO.setFacturaCondicion(facturaVenta.getFacturaCondicion());
         facturaVentaDTO.setFacturaVentaEstado(facturaVenta.getFacturaVentaEstado());
         facturaVentaDTO.setFacturaVentaFecha(facturaVenta.getFacturaVentaFecha());
-        facturaVentaDTO.setFacturaVentaIva(facturaVenta.getFacturaVentaIva());
+        facturaVentaDTO.setFacturaVentaExentas(facturaVenta.getFacturaVentaTotalExentas());
+        facturaVentaDTO.setFacturaVentaIva5(facturaVenta.getFacturaVentaTotalIva5());
+        facturaVentaDTO.setFacturaVentaIva10(facturaVenta.getFacturaVentaTotalIva10());
+        facturaVentaDTO.setFacturaVentaTotalIva(facturaVenta.getFacturaVentaTotalIva());
         facturaVentaDTO.setFacturaVentaNroRecibo(facturaVenta.getFacturaVentaNroRecibo());
         facturaVentaDTO.setFacturaVentaMontoTotal(facturaVenta.getFacturaVentaMontoTotal());
         for (DetalleVenta detalleVenta : facturaVenta.getDetalleVenta()) {
@@ -57,8 +60,11 @@ public class ConverterFacturaVenta {
         facturaVenta.setFacturaCondicion(facturaVentaDTO.getFacturaCondicion());
         facturaVenta.setFacturaVentaEstado(Estado);
         facturaVenta.setEmpleado(empleado);
-        facturaVenta.setPersona(cliente);
-        facturaVenta.setFacturaVentaIva(facturaVentaDTO.getFacturaVentaIva());
+        facturaVenta.setPersona(cliente);      
+        facturaVenta.setFacturaVentaTotalExentas(facturaVentaDTO.getFacturaVentaExentas());
+        facturaVenta.setFacturaVentaTotalIva5(facturaVentaDTO.getFacturaVentaIva5());
+        facturaVenta.setFacturaVentaTotalIva10(facturaVentaDTO.getFacturaVentaIva10());
+        facturaVenta.setFacturaVentaTotalIva(facturaVentaDTO.getFacturaVentaTotalIva());      
         facturaVenta.setFacturaVentaMontoTotal(facturaVentaDTO.getFacturaVentaMontoTotal());
         return facturaVenta;
     }   

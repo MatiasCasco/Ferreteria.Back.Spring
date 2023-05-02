@@ -25,7 +25,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "detalle_venta_id")
+@Table(name = "detalle_venta")
 public class DetalleVenta implements Serializable {
     
     @Id
