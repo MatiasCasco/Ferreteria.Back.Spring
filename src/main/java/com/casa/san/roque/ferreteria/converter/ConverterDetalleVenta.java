@@ -33,8 +33,9 @@ public class ConverterDetalleVenta {
         detalleVentaDTO.setCaracteristicasProductoId(detalleVenta.getCaracteristicasProducto().getCaracteristicasProductoId());
         detalleVentaDTO.setDetalleVentaCantidad(detalleVenta.getDetalleVentaCantidad());
         detalleVentaDTO.setDetalleVentaUnidadStock(detalleVenta.getDetalleVentaUnidadStock());
-        detalleVentaDTO.setDetalleVentaIva(detalleVenta.getDetalleVentaId());
-        detalleVentaDTO.setDetalleVentaSubTotalIva(detalleVenta.getDetalleVentaSubTotalIva());
+        detalleVentaDTO.setDetalleVentaExentas(detalleVenta.getDetalleVentaExentas());
+        detalleVentaDTO.setDetalleVentaIva5(detalleVenta.getDetalleVentaIva5());
+        detalleVentaDTO.setDetalleVentaIva10(detalleVenta.getDetalleVentaIva10());
         detalleVentaDTO.setDetalleVentaSubTotal(detalleVenta.getDetalleVentaSubTotal());
         return detalleVentaDTO;
     }
@@ -48,10 +49,11 @@ public class ConverterDetalleVenta {
         detalleVenta.setFacturaVenta(factura);
         detalleVenta.setCaracteristicasProducto(caracteristicasProducto);
         detalleVenta.setDetalleVentaCantidad(detalleVentaDTO.getDetalleVentaCantidad());
-        detalleVenta.setDetalleVentaIva(detalleVentaDTO.getDetalleVentaIva());
         detalleVenta.setDetalleVentaUnidadStock(detalleVentaDTO.getDetalleVentaUnidadStock());
+        detalleVenta.setDetalleVentaExentas(detalleVentaDTO.getDetalleVentaExentas());
+        detalleVenta.setDetalleVentaIva5(detalleVentaDTO.getDetalleVentaIva5());
+        detalleVenta.setDetalleVentaIva10(detalleVentaDTO.getDetalleVentaIva10());
         detalleVenta.setDetalleVentaSubTotal(detalleVentaDTO.getDetalleVentaSubTotal());
-        detalleVenta.setDetalleVentaSubTotalIva(detalleVentaDTO.getDetalleVentaSubTotalIva());
         return detalleVenta;
     }
     

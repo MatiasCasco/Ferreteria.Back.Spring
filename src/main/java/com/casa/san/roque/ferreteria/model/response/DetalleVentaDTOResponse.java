@@ -24,10 +24,12 @@ public class DetalleVentaDTOResponse {
     
     private String detalleVentaUnidadStock;
     
-    private double detalleVentaIva;
+    private double detalleVentaExentas;
+    
+    private double detalleVentaIva5;
+    
+    private double detalleVentaIva10;
     
     private double detalleVentaSubTotal;
-    
-    private double detalleVentaSubTotalIva;
     
 }

@@ -47,12 +47,16 @@ public class DetalleVenta implements Serializable {
     @Column(name = "detalle_venta_unidad_stock")
     private String detalleVentaUnidadStock;
     
-    @Column(name = "detalle_venta_iva")
-    private double detalleVentaIva;
+    @Column(name = "detalle_venta_exentas")
+    private double detalleVentaExentas;
+    
+    @Column(name = "detalle_venta_iva5")
+    private double detalleVentaIva5;
+    
+    @Column(name = "detalle_venta_iva10")
+    private double detalleVentaIva10;
     
     @Column(name = "detalle_venta_sub_total")
     private double detalleVentaSubTotal;
-    
-    @Column(name = "detalle_venta_sub_total_iva")
-    private double detalleVentaSubTotalIva;
+
 }
