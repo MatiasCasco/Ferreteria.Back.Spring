@@ -23,6 +23,8 @@ public class FacturaVentaDTORequest {
     
     private Long empleadoId;
     
+    private Long cajaId;
+    
     private Date facturaVentaFecha;
     
     private String facturaVentaNroRecibo;

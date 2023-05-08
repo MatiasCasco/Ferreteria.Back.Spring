@@ -1,6 +1,8 @@
 package com.casa.san.roque.ferreteria.converter;
 
+import com.casa.san.roque.ferreteria.dao.CajaRepository;
 import com.casa.san.roque.ferreteria.dao.PersonaRepository;
+import com.casa.san.roque.ferreteria.model.entity.Caja;
 import com.casa.san.roque.ferreteria.model.entity.DetalleVenta;
 import com.casa.san.roque.ferreteria.model.entity.FacturaVenta;
 import com.casa.san.roque.ferreteria.model.entity.Persona;
@@ -25,6 +27,9 @@ public class ConverterFacturaVenta {
     @Autowired
     private PersonaRepository repositoryPersona;
     
+    @Autowired
+    private CajaRepository repositoryCaja;
+    
     private static final String Estado = "INSERTANDO"; 
     
     public FacturaVentaDTOResponse toFacturaVentaDTO(FacturaVenta facturaVenta) {
@@ -33,6 +38,7 @@ public class ConverterFacturaVenta {
         facturaVentaDTO.setFacturaVentaId(facturaVenta.getFacturaVentaId());
         facturaVentaDTO.setClienteId(facturaVenta.getPersona().getPersonaId());
         facturaVentaDTO.setEmpleadoId(facturaVenta.getEmpleado().getPersonaId());
+        facturaVentaDTO.setCajaId(facturaVenta.getCaja().getCajaId());
         facturaVentaDTO.setFacturaCondicion(facturaVenta.getFacturaCondicion());
         facturaVentaDTO.setFacturaVentaEstado(facturaVenta.getFacturaVentaEstado());
         facturaVentaDTO.setFacturaVentaFecha(facturaVenta.getFacturaVentaFecha());
@@ -53,14 +59,17 @@ public class ConverterFacturaVenta {
         FacturaVenta facturaVenta = new FacturaVenta();
         Persona cliente = new Persona();
         Persona empleado = new Persona();
+        Caja caja = new Caja();
         cliente = repositoryPersona.findById(facturaVentaDTO.getClienteId()).orElse(new Persona());
         empleado = repositoryPersona.findById(facturaVentaDTO.getEmpleadoId()).orElse(new Persona());
+        caja = repositoryCaja.findById(facturaVentaDTO.getCajaId()).orElse(new Caja());
         facturaVenta.setFacturaVentaFecha(facturaVentaDTO.getFacturaVentaFecha());
         facturaVenta.setFacturaVentaNroRecibo(facturaVentaDTO.getFacturaVentaNroRecibo());
         facturaVenta.setFacturaCondicion(facturaVentaDTO.getFacturaCondicion());
         facturaVenta.setFacturaVentaEstado(Estado);
         facturaVenta.setEmpleado(empleado);
-        facturaVenta.setPersona(cliente);      
+        facturaVenta.setPersona(cliente); 
+        facturaVenta.setCaja(caja);
         facturaVenta.setFacturaVentaTotalExentas(facturaVentaDTO.getFacturaVentaExentas());
         facturaVenta.setFacturaVentaTotalIva5(facturaVentaDTO.getFacturaVentaIva5());
         facturaVenta.setFacturaVentaTotalIva10(facturaVentaDTO.getFacturaVentaIva10());

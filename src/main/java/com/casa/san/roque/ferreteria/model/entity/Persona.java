@@ -52,6 +52,7 @@ public class Persona implements Serializable {
     
     @Column(name = "persona_email")
     private String personaEmail;
+    
     @JsonBackReference
     @OneToMany(mappedBy = "persona", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<FacturaVenta> facturas;

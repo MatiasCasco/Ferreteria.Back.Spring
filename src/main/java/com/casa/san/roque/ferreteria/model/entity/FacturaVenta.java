@@ -37,14 +37,21 @@ public class FacturaVenta implements Serializable {
     
     @Column(name = "factura_condicion")
     private String facturaCondicion;
+    
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id")
     private Persona persona;
+    
     @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "empleado_id")
     private Persona empleado;
+    
+    @JsonManagedReference
+    @ManyToOne
+    @JoinColumn(name = "caja_id")
+    private Caja caja;
     
     @Column(name = "factura_venta_fecha")
     private Date facturaVentaFecha;
