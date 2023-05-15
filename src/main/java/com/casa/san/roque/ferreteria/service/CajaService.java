@@ -1,7 +1,10 @@
 package com.casa.san.roque.ferreteria.service;
 
 import com.casa.san.roque.ferreteria.model.request.CajaDTORequest;
+import com.casa.san.roque.ferreteria.model.request.CajaDetalleDTORequest;
 import com.casa.san.roque.ferreteria.model.response.CajaDTOResponse;
+import com.casa.san.roque.ferreteria.model.response.CajaDetalleDTOResponse;
+import java.util.List;
 
 /**
  *
@@ -11,9 +14,9 @@ public interface CajaService {
     
     public CajaDTOResponse aperturaCaja(CajaDTORequest cajaDTORequest);
     
-    public void agregarFactura(Long cajeroId, Long facturaId);
+    public CajaDetalleDTOResponse registrarTransaccion(CajaDetalleDTORequest cajaDetalleDTORequest);
     
-    public void obtenerFacturas(Long cajeroId);
+    public List<CajaDetalleDTOResponse> obtenerFacturas(Long cajeroId);
     
     public void calcularSaldo();
     
