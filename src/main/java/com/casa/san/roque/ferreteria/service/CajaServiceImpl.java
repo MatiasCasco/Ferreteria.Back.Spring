@@ -66,18 +66,14 @@ public class CajaServiceImpl implements CajaService {
     }
 
     @Override
-    public void calcularSaldo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void recalcularSaldo(double montoEntrante, double montoCobrado) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void arqueoCaja() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public CajaDetalleDTOResponse getDetalleCajaById(Long detalleId) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        CajaDetalleDTOResponse cajaDetalleDTOResponse = new CajaDetalleDTOResponse();
+        DetalleCaja detalleCaja = new DetalleCaja();
+        detalleCaja = repositoryDetalleCaja.findById(detalleId).orElse(new DetalleCaja());
+        System.out.println(detalleCaja);
+        cajaDetalleDTOResponse = converterDetalleCaja.toCajaDetalleDTOResponse(detalleCaja);
+        return cajaDetalleDTOResponse;
     }
    
 }

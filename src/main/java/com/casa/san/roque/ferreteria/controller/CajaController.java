@@ -39,4 +39,9 @@ public class CajaController {
     public List<CajaDetalleDTOResponse> getFacturas(@PathVariable(name = "idEmpleado", required = true) Long idEmpleado) {
         return service.obtenerFacturas(idEmpleado);
     }
+    
+    @GetMapping("/detalleCaja/{idDetalle}")
+    public CajaDetalleDTOResponse getDetalleCajaById(@PathVariable(name = "idDetalle", required = true) Long idDetalle) {
+        return service.getDetalleCajaById(idDetalle);
+    }
 }

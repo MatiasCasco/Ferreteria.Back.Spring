@@ -3,6 +3,7 @@ package com.casa.san.roque.ferreteria.dao;
 import com.casa.san.roque.ferreteria.model.entity.DetalleCaja;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,6 +14,8 @@ import org.springframework.data.repository.query.Param;
  */
 public interface DetalleCajaRepository extends JpaRepository<DetalleCaja, Serializable> {
     
-    List<DetalleCaja> findByCaja_CajaEstadoAndCaja_Empleado_PersonaId(@Param("cajaEstado") String cajaEstado, @Param("empleadoId") Long empleadoId);
+//    public Optional<DetalleCaja> findByDetalleCajaId(Long id);
+    
+    public List<DetalleCaja> findByCaja_CajaEstadoAndCaja_Empleado_PersonaId(@Param("cajaEstado") String cajaEstado, @Param("empleadoId") Long empleadoId);
     
 }

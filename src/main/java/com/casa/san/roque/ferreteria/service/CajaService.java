@@ -18,9 +18,6 @@ public interface CajaService {
     
     public List<CajaDetalleDTOResponse> obtenerFacturas(Long cajeroId);
     
-    public void calcularSaldo();
+    public CajaDetalleDTOResponse getDetalleCajaById(Long detalleId);
     
-    public void recalcularSaldo(double montoEntrante, double montoCobrado);
-    
-    public void arqueoCaja();
 }
