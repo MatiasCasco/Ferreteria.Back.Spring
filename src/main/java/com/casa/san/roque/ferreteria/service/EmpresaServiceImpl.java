@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -22,19 +23,22 @@ public class EmpresaServiceImpl implements EmpresaService {
     
     @Autowired
     private EmpresaContactoRepository repositoryContactos;
-      
+    
+    @Transactional
     @Override
     public Empresa addEmpresa(Empresa empresa) {
         repositoryContactos.saveAll(empresa.getEmpresasContactos());
         repository.save(empresa);
         return empresa;
     }
-
+    
+    @Transactional
     @Override
     public List<Empresa> addEmpresas(List<Empresa> empresas) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Transactional
     @Override
     public Empresa updateEmpresa(Empresa empresa) {
         Empresa oldEmpresa = null;
@@ -71,6 +75,7 @@ public class EmpresaServiceImpl implements EmpresaService {
         return empresa;
     }
 
+    @Transactional
     @Override
     public String deleteEmpresa(Long empresaId) {
         repository.deleteById(empresaId);

@@ -1,13 +1,13 @@
 package com.casa.san.roque.ferreteria.converter;
 
-import com.casa.san.roque.ferreteria.dao.CaracteristicasProductoRepository;
 import com.casa.san.roque.ferreteria.dao.EmpresaRepository;
-import com.casa.san.roque.ferreteria.model.entity.CaracteristicasProducto;
+import com.casa.san.roque.ferreteria.model.entity.CaracteristicaProducto;
 import com.casa.san.roque.ferreteria.model.entity.Empresa;
 import com.casa.san.roque.ferreteria.model.entity.OrigenProducto;
 import com.casa.san.roque.ferreteria.model.request.OrigenProductoDTORequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import com.casa.san.roque.ferreteria.dao.CaracteristicaProductoRepository;
 
 /**
  *
@@ -20,7 +20,7 @@ public class ConverterOrigenProducto {
     private EmpresaRepository empresaRepository;
     
     @Autowired
-    private CaracteristicasProductoRepository caracteristicasProductoRepository;
+    private CaracteristicaProductoRepository caracteristicasProductoRepository;
 
     public OrigenProducto convertToEntity(OrigenProductoDTORequest origenProductoDTO) {
         OrigenProducto origenProducto = new OrigenProducto();
@@ -30,7 +30,7 @@ public class ConverterOrigenProducto {
             .orElseThrow(() -> new IllegalArgumentException("Empresa cannot be null"));
         origenProducto.setEmpresa(empresa);
         
-        CaracteristicasProducto caracteristicasProducto = caracteristicasProductoRepository.findById(origenProductoDTO.getCaracteristicasProductoId())
+        CaracteristicaProducto caracteristicasProducto = caracteristicasProductoRepository.findById(origenProductoDTO.getCaracteristicasProductoId())
             .orElseThrow(() -> new IllegalArgumentException("CaracteristicasProducto cannot be null"));
         origenProducto.setCaracteristicasProducto(caracteristicasProducto);
         

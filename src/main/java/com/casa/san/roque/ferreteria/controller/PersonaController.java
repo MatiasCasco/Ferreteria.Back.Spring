@@ -24,7 +24,7 @@ public class PersonaController {
     @Autowired
     private PersonaService service;
     
-    @PostMapping("/add")
+    @PostMapping("/addPersona")
     public Persona addPersona(@RequestBody Persona persona) {
         return service.addPersona(persona);
     }
@@ -34,12 +34,12 @@ public class PersonaController {
         return service.addPersonas(personas);
     }
     
-    @PutMapping("/update")
+    @PutMapping("/updatePersona")
     public Persona updatePersona(@RequestBody Persona persona) {
         return service.updatePersona(persona);
     }
     
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/deletePerson/{id}")
     public String deletePersona(@PathVariable(name = "id", required = true) Long personaId) {
         return service.deletePersona(personaId);
     }

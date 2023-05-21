@@ -13,19 +13,19 @@ public interface FacturaVentaService {
     
     public List<FacturaVentaDTOResponse> FacturasPendientesBYEmpleado(Long idEmpleado) throws Exception;
      
-     public FacturaVentaDTOResponse findFacturaById(Long idFactura) throws Exception;
+    public FacturaVentaDTOResponse findFacturaById(Long idFactura) throws Exception;
      
-     public List<FacturaVentaDTOResponse> findLast(Long idEmpleado, Long idCliente) throws Exception;
+    public List<FacturaVentaDTOResponse> findLast(Long idEmpleado, Long idCliente) throws Exception;
      
-     public List<FacturaVentaDTOResponse> getFacturasByCliente(Long idCliente) throws Exception;
+    public List<FacturaVentaDTOResponse> getFacturasByCliente(Long idCliente) throws Exception;
      
-     public List<FacturaVentaDTOResponse> findFacturasByEmpleado(Long idEmpleado) throws Exception;
+    public List<FacturaVentaDTOResponse> findFacturasByEmpleado(Long idEmpleado) throws Exception;
      
-     public List<FacturaVentaDTOResponse> getAll() throws Exception;
+    public List<FacturaVentaDTOResponse> getAll() throws Exception;
      
-     public FacturaVenta addFacturaVenta (FacturaVentaDTORequest facturaVentaDTO) throws Exception;
+    public FacturaVenta addFacturaVenta (FacturaVentaDTORequest facturaVentaDTO) throws Exception;
      
-     public void removeFacturaVenta(Long idFacturaVenta) throws Exception;
+    public void removeFacturaVenta(Long idFacturaVenta) throws Exception;
      
-     public void updateFacturaVenta(FacturaVenta FacturaVenta) throws Exception;
+    public void updateFacturaVenta(FacturaVenta FacturaVenta) throws Exception;
 }

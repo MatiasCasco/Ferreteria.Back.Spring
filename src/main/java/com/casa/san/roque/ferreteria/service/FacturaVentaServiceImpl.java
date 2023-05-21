@@ -16,6 +16,7 @@ import java.util.Optional;
 import javax.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -90,7 +91,8 @@ public class FacturaVentaServiceImpl implements FacturaVentaService {
         }
         return listFacturas;
     }
-
+    
+    @Transactional
     @Override
     public FacturaVenta addFacturaVenta(FacturaVentaDTORequest facturaVentaDTO) throws Exception {
         List<DetalleVenta> detalle = new ArrayList<DetalleVenta>(); 
@@ -108,12 +110,14 @@ public class FacturaVentaServiceImpl implements FacturaVentaService {
         repository.save(facturaVenta);
         return facturaVenta;
     }
-
+    
+    @Transactional
     @Override
     public void removeFacturaVenta(Long idFacturaVenta) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
+    @Transactional
     @Override
     public void updateFacturaVenta(FacturaVenta FacturaVenta) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

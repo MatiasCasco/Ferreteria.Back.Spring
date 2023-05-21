@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Matias Casco
  */
 @RestController
-@RequestMapping("DescuentoAPI")
+@RequestMapping("/DescuentoAPI")
 public class DescuentoController {
     
     @Autowired

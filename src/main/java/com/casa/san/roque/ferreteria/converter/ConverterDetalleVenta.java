@@ -1,8 +1,7 @@
 package com.casa.san.roque.ferreteria.converter;
 
-import com.casa.san.roque.ferreteria.dao.CaracteristicasProductoRepository;
 import com.casa.san.roque.ferreteria.dao.FacturaVentaRepository;
-import com.casa.san.roque.ferreteria.model.entity.CaracteristicasProducto;
+import com.casa.san.roque.ferreteria.model.entity.CaracteristicaProducto;
 import com.casa.san.roque.ferreteria.model.entity.DetalleVenta;
 import com.casa.san.roque.ferreteria.model.entity.FacturaVenta;
 import com.casa.san.roque.ferreteria.model.request.DetalleVentaDTORequest;
@@ -12,6 +11,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import com.casa.san.roque.ferreteria.dao.CaracteristicaProductoRepository;
 
 /**
  *
@@ -24,7 +24,7 @@ public class ConverterDetalleVenta {
     private FacturaVentaRepository repositoryFactura;
     
     @Autowired
-    private CaracteristicasProductoRepository repositoryCaracteristicasProducto;
+    private CaracteristicaProductoRepository repositoryCaracteristicasProducto;
     
     public DetalleVentaDTOResponse toDetalleVentaDTO(DetalleVenta detalleVenta) {
         DetalleVentaDTOResponse detalleVentaDTO = new DetalleVentaDTOResponse();
@@ -43,7 +43,7 @@ public class ConverterDetalleVenta {
     public DetalleVenta toDetalleVenta(DetalleVentaDTORequest detalleVentaDTO, Long facturaId) {
         FacturaVenta factura = repositoryFactura.findById(facturaId)
                 .orElseThrow(() -> new IllegalArgumentException("Factura cannot be null"));
-        CaracteristicasProducto caracteristicasProducto = repositoryCaracteristicasProducto.findById(detalleVentaDTO.getCaracteristicasProductoId())
+        CaracteristicaProducto caracteristicasProducto = repositoryCaracteristicasProducto.findById(detalleVentaDTO.getCaracteristicasProductoId())
                 .orElseThrow(() -> new IllegalArgumentException("Caracteristica Producto cannot be null"));
         DetalleVenta detalleVenta = new DetalleVenta();
         detalleVenta.setFacturaVenta(factura);

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -36,6 +37,7 @@ public class CajaServiceImpl implements CajaService {
     
     private static final String ESTADO = "Apertura";
     
+    @Transactional
     @Override
     public CajaDTOResponse aperturaCaja(CajaDTORequest cajaDTORequest) {
         Caja caja = converterCaja.toCaja(cajaDTORequest);
@@ -44,9 +46,9 @@ public class CajaServiceImpl implements CajaService {
         return cajaDTOResponse;
     }
 
+    @Transactional
     @Override
     public CajaDetalleDTOResponse registrarTransaccion(CajaDetalleDTORequest cajaDetalleDTORequest) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         DetalleCaja detalleCaja = converterDetalleCaja.toDetalleCaja(cajaDetalleDTORequest);
         repositoryDetalleCaja.save(detalleCaja);
         CajaDetalleDTOResponse cajaDetalleDTOResponse = converterDetalleCaja.toCajaDetalleDTOResponse(detalleCaja);
@@ -55,7 +57,6 @@ public class CajaServiceImpl implements CajaService {
     
     @Override
     public List<CajaDetalleDTOResponse> obtenerFacturas(Long cajeroId) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         List<DetalleCaja> list = new ArrayList<>();
         List<CajaDetalleDTOResponse> listResponse = new ArrayList<>();
         list = repositoryDetalleCaja.findByCaja_CajaEstadoAndCaja_Empleado_PersonaId(ESTADO, cajeroId);
@@ -67,7 +68,6 @@ public class CajaServiceImpl implements CajaService {
 
     @Override
     public CajaDetalleDTOResponse getDetalleCajaById(Long detalleId) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         CajaDetalleDTOResponse cajaDetalleDTOResponse = new CajaDetalleDTOResponse();
         DetalleCaja detalleCaja = new DetalleCaja();
         detalleCaja = repositoryDetalleCaja.findById(detalleId).orElse(new DetalleCaja());

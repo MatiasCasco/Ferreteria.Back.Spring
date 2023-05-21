@@ -57,5 +57,5 @@ public class Producto implements Serializable {
     
     @JsonIgnore
     @OneToMany(mappedBy = "producto", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<CaracteristicasProducto> caracteristicas;
+    private List<CaracteristicaProducto> caracteristicas;
 }

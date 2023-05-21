@@ -19,16 +19,19 @@ public class PersonaServiceImpl implements PersonaService{
     @Autowired
     private PersonaRepository repository;
     
+    @Transactional
     @Override
     public Persona addPersona(Persona persona) {
         return repository.save(persona);
     }
     
+    @Transactional
     @Override
     public List<Persona> addPersonas(List<Persona> personas) {
         return repository.saveAll(personas);
     }
     
+    @Transactional
     @Override
     public Persona updatePersona(Persona persona) {
         Persona oldPersona = null;
@@ -50,6 +53,7 @@ public class PersonaServiceImpl implements PersonaService{
         return persona;
     }
     
+    @Transactional
     @Override
     public String deletePersona(Long personaId) {
         repository.deleteById(personaId);

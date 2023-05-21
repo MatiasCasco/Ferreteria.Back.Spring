@@ -46,7 +46,7 @@ public class OrigenProducto implements Serializable {
     @JsonView
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "caracteristicas_producto_id")
-    private CaracteristicasProducto caracteristicasProducto;
+    private CaracteristicaProducto caracteristicasProducto;
     
     @Column(name = "precio_venta_proveedor")
     private double precioVentaProveedor;

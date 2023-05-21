@@ -9,15 +9,16 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.casa.san.roque.ferreteria.dao.CaracteristicasProductoRepository;
 import com.casa.san.roque.ferreteria.dao.EmpresaContactoRepository;
 import com.casa.san.roque.ferreteria.dao.ProductoRepository;
-import com.casa.san.roque.ferreteria.model.entity.CaracteristicasProducto;
+import com.casa.san.roque.ferreteria.model.entity.CaracteristicaProducto;
 import com.casa.san.roque.ferreteria.model.entity.EmpresaContacto;
 import com.casa.san.roque.ferreteria.model.entity.Producto;
 import com.casa.san.roque.ferreteria.model.request.OrigenProductoDTORequest;
 import java.util.ArrayList;
 import java.util.Calendar;
+import org.springframework.transaction.annotation.Transactional;
+import com.casa.san.roque.ferreteria.dao.CaracteristicaProductoRepository;
 
 /**
  *
@@ -36,7 +37,7 @@ public class OrigenProductoServiceImpl implements OrigenProductoService{
     private EmpresaContactoRepository repositoryEmpresaContactoRepository;
     
     @Autowired
-    private CaracteristicasProductoRepository repositoryCaracteristicasProducto;
+    private CaracteristicaProductoRepository repositoryCaracteristicasProducto;
     
     @Autowired
     private ProductoRepository repositoryProducto;
@@ -63,7 +64,8 @@ public class OrigenProductoServiceImpl implements OrigenProductoService{
     public List<OrigenProducto> findByEmpresaIdAndProductoId(Long empresaId, Long productoId) {
         return repository.findBYIdEmpresaAndIdProductoWithEmpresaAndCaracteristicasProducto(empresaId, productoId);
     }
-
+    
+    @Transactional
     @Override
     public OrigenProducto addOrigenProducto(OrigenProducto origenProducto) {
         
@@ -80,7 +82,7 @@ public class OrigenProductoServiceImpl implements OrigenProductoService{
         empresa.setEmpresasContactos(empresaContactos);
         Producto producto = repositoryProducto.findById(origenProducto.getCaracteristicasProducto().getProducto().getProductoId())
                 .orElseThrow(() -> new IllegalArgumentException("Producto cannot be null"));
-        CaracteristicasProducto caracteristicasProducto = repositoryCaracteristicasProducto.findById(origenProducto.getCaracteristicasProducto().getCaracteristicasProductoId())
+        CaracteristicaProducto caracteristicasProducto = repositoryCaracteristicasProducto.findById(origenProducto.getCaracteristicasProducto().getCaracteristicasProductoId())
                 .orElseThrow(() -> new IllegalArgumentException("CaracteristicasProducto cannot be null"));
         caracteristicasProducto.setProducto(producto);
         origenProducto.setCaracteristicasProducto(caracteristicasProducto);
@@ -91,12 +93,14 @@ public class OrigenProductoServiceImpl implements OrigenProductoService{
 
         return repository.save(origenProducto);
     }
-
+    
+    @Transactional
     @Override
     public List<OrigenProducto> addOrigenProductos(List<OrigenProducto> origenProductos) {
         return repository.saveAll(origenProductos);
     }
 
+    @Transactional
     @Override
     public OrigenProducto updateOrigenProducto(OrigenProducto origenProducto) {
         OrigenProducto oldOrigenProducto = null;
@@ -115,6 +119,7 @@ public class OrigenProductoServiceImpl implements OrigenProductoService{
         return origenProducto;
     }
 
+    @Transactional
     @Override
     public String deleteOrigenProducto(Long origenProductoId) {
         repository.deleteById(origenProductoId);
@@ -130,13 +135,15 @@ public class OrigenProductoServiceImpl implements OrigenProductoService{
         }
         return response;
     }
-
+    
+    @Transactional
     @Override
     public OrigenProducto addOrigenProduct(OrigenProductoDTORequest origenProductoDTO) {
         OrigenProducto origenProducto = converterOrigenProducto.convertToEntity(origenProductoDTO);
         return repository.save(origenProducto);
     }
 
+    @Transactional
     @Override
     public List<OrigenProducto> addOrigenProducts(List<OrigenProductoDTORequest> origenProductosDTO) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
