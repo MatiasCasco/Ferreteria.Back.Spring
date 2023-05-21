@@ -26,27 +26,23 @@ public class CaracteristicaProductoServiceImpl implements CaracteristicaProducto
     
     @Override
     public List<CaracteristicaProducto> getAll() {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         return repository.findAll();
     }
 
     @Override
     public CaracteristicaProducto findByCaracteristicaId(Long caracteristicaProductoId) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         return repository.findById(caracteristicaProductoId).orElse(new CaracteristicaProducto());
     }
 
     @Transactional
     @Override
     public CaracteristicaProducto addCaracteristicaProducto(CaracteristicaProductoDTORequest caracteristicaProductoRequest) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         return repository.save(converterCaracterisitcaProducto.toCaracteristicaProducto(caracteristicaProductoRequest));
     }
 
     @Transactional
     @Override
     public List<CaracteristicaProducto> addCaracteristicaProductos(List<CaracteristicaProductoDTORequest> productos) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         List<CaracteristicaProducto> list = new ArrayList<>();
         for (CaracteristicaProductoDTORequest producto : productos) {
             list.add(converterCaracterisitcaProducto.toCaracteristicaProducto(producto));
@@ -57,7 +53,6 @@ public class CaracteristicaProductoServiceImpl implements CaracteristicaProducto
     @Transactional
     @Override
     public CaracteristicaProducto updateCaracteristicaProducto(CaracteristicaProductoDTORequest caracteristicaProductoRequest) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         CaracteristicaProducto oldCaracteristicaProducto = new CaracteristicaProducto();
         Optional<CaracteristicaProducto> optionalCaracteristicaProducto = repository.findById(caracteristicaProductoRequest.getCaracteristicasProductoId());
         CaracteristicaProducto converter = converterCaracterisitcaProducto.toCaracteristicaProducto(caracteristicaProductoRequest);
@@ -82,7 +77,6 @@ public class CaracteristicaProductoServiceImpl implements CaracteristicaProducto
     @Transactional
     @Override
     public String deleteCaracteristicaProducto(Long caracteristicaProductoId) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         repository.deleteById(caracteristicaProductoId);
         return "Eliminacion exitosa del item ".concat(caracteristicaProductoId.toString());
     }
