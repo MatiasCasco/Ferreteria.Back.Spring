@@ -36,7 +36,7 @@ public class OrigenProducto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, name = "origen_producto_id")
-    private Long OrigenProductoId;
+    private Long origenProductoId;
     
     @JsonView
     @ManyToOne(fetch = FetchType.LAZY)

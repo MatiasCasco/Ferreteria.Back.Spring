@@ -58,8 +58,7 @@ public class CaracteristicaProductoServiceImpl implements CaracteristicaProducto
         CaracteristicaProducto converter = converterCaracterisitcaProducto.toCaracteristicaProducto(caracteristicaProductoRequest);
         if (optionalCaracteristicaProducto.isPresent()){
             oldCaracteristicaProducto = optionalCaracteristicaProducto.get();
-            oldCaracteristicaProducto.setMarcaId(converter.getMarcaId());
-            oldCaracteristicaProducto.setMarcaNombre(converter.getMarcaNombre());
+            oldCaracteristicaProducto.setMarca(converter.getMarca());
             oldCaracteristicaProducto.setOrigenProducto(converter.getOrigenProducto());
             oldCaracteristicaProducto.setProducto(converter.getProducto());
             oldCaracteristicaProducto.setProductoCosto(converter.getProductoCosto());

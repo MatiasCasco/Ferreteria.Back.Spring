@@ -44,11 +44,10 @@ public class CaracteristicaProducto implements Serializable {
     @JoinColumn(name = "origen_producto_id")
     private OrigenProducto origenProducto;
     
-    @Column(name = "marca_id")
-    private Long marcaId;
-    
-    @Column(name = "marca_nombre")
-    private String marcaNombre;
+    @JsonView
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "marca_id")
+    private Marca marca;
     
     @Column(name = "producto_costo")
     private double productoCosto;

@@ -21,8 +21,6 @@ public class CaracteristicaProductoDTORequest {
     
     private Long marcaId;
     
-    private String marcaNombre;
-    
     private double productoCosto;
     
     private double productoPrecio;

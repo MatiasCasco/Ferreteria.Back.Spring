@@ -24,18 +24,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "categorias")
-public class Categoria implements Serializable {
+@Table(name = "marcas")
+public class Marca implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, name = "categoria_id")
-    private Long categoriaId;
-
-    @Column(name = "categoria_nombre")
-    private String categoriaDescripcion;
+    @Column(nullable = false, name = "marca_id")
+    private Long marcaId;
+    
+    @Column(name = "marca_nombre")
+    private String marcaDescripcion;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Producto> productosPorCategoria;
+    @OneToMany(mappedBy = "marca", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<CaracteristicaProducto> productosPorMarca;
 }

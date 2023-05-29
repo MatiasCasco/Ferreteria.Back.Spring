@@ -24,7 +24,7 @@ public interface ProductoRepository extends JpaRepository<Producto, Serializable
             
     @Query("SELECT p FROM Producto p JOIN FETCH p.caracteristicas cp"
             + " JOIN FETCH cp.origenProducto o"
-            + " WHERE cp.marcaId = :marcaId")
+            + " WHERE cp.marca.marcaId = :marcaId")
     public List<Producto> findByIdMarca(@Param("marcaId") Long marcaId);
     
     @Query("SELECT p FROM Producto p JOIN FETCH p.categoria"
