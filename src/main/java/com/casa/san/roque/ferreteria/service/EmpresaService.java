@@ -2,6 +2,8 @@ package com.casa.san.roque.ferreteria.service;
 
 import com.casa.san.roque.ferreteria.model.entity.Empresa;
 import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  *
@@ -9,7 +11,7 @@ import java.util.List;
  */
 public interface EmpresaService {
     
-    public List<Empresa> getAll();
+    public Page<Empresa> getAll(Pageable pageble);
     
     public Empresa findByEmpresaId(Long empresaId);
     
