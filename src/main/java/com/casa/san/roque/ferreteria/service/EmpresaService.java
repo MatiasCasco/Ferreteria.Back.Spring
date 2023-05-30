@@ -15,7 +15,7 @@ public interface EmpresaService {
     
     public Empresa findByEmpresaId(Long empresaId);
     
-    public List<Empresa> findByEmpresaNombre(String empresaNombre);
+    public Page<Empresa> findByEmpresaNombre(String empresaNombre, Pageable pageble);
     
     public Empresa findByEmpresaRucOCi(String dataRucOCI);
     

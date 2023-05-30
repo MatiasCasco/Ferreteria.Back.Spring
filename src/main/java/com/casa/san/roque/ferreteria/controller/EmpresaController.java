@@ -49,9 +49,11 @@ public class EmpresaController {
     }
     
     @GetMapping("/empresaByName/{nombreEmpresa}")
-    public List<Empresa> getEmpresaByEmpresaNombre(
-            @PathVariable(name = "nombreEmpresa", required = true) String nombreEmpresa) {
-        return service.findByEmpresaNombre(nombreEmpresa);
+    public Page<Empresa> getEmpresaByEmpresaNombre(
+            @PathVariable(name = "nombreEmpresa", required = true) String nombreEmpresa,
+            @RequestParam(defaultValue = "0") int paga,
+            @RequestParam(defaultValue = "10") int size) {
+        return service.findByEmpresaNombre(nombreEmpresa, PageRequest.of(paga, size));
     }
     
     @GetMapping("/empresaByRucOrCi/{dataRucOCi}")
@@ -62,8 +64,8 @@ public class EmpresaController {
     
     @GetMapping("/all")
     public Page<Empresa> allEmpresa(
-            @RequestParam(defaultValue = "0") int paga,
+            @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
-        return service.getAll(PageRequest.of(paga, size));
+        return service.getAll(PageRequest.of(page, size));
     }
 }

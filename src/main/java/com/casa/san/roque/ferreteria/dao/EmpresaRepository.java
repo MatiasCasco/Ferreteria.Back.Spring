@@ -20,9 +20,9 @@ public interface EmpresaRepository extends JpaRepository<Empresa, Serializable>{
             + " WHERE e.id = :empresaId")
     public Optional<Empresa> findById(Long empresaId);
     
-    @Query("SELECT e FROM Empresa e JOIN FETCH e.empresasContactos ec"
-            +  " WHERE UPPER(e.empresaNombre) LIKE CONCAT('%', UPPER(:empresaNombre), '%')")
-    public Optional<List<Empresa>> findByEmpresaNombre(@Param("empresaNombre") String empresaNombre);
+    @Query(value = "SELECT e FROM Empresa e JOIN FETCH e.empresasContactos ec WHERE UPPER(e.empresaNombre) LIKE CONCAT('%', UPPER(:empresaNombre), '%')",
+           countQuery = "SELECT COUNT(e) FROM Empresa e WHERE UPPER(e.empresaNombre) LIKE CONCAT('%', UPPER(:empresaNombre), '%')")
+    public Page<Empresa> findByEmpresaNombre(@Param("empresaNombre") String empresaNombre, Pageable pageable);    
     
     @Query("SELECT e FROM Empresa e JOIN FETCH e.empresasContactos ec"
             + " WHERE e.empresaRuc = :empresaRucOCi")

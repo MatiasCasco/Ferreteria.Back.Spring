@@ -100,13 +100,8 @@ public class EmpresaServiceImpl implements EmpresaService {
     }
 
     @Override
-    public List<Empresa> findByEmpresaNombre(String empresaNombre) {
-        List<Empresa> response = null;
-        Optional<List<Empresa>> result = repository.findByEmpresaNombre(empresaNombre);
-        if(result.isPresent()){
-            response = result.get();
-        }
-        return response;
+    public Page<Empresa> findByEmpresaNombre(String empresaNombre, Pageable pageble) {
+        return repository.findByEmpresaNombre(empresaNombre, pageble);        
     }
 
     @Override
