@@ -4,6 +4,8 @@ import com.casa.san.roque.ferreteria.model.entity.FacturaVenta;
 import com.casa.san.roque.ferreteria.model.request.FacturaVentaDTORequest;
 import com.casa.san.roque.ferreteria.model.response.FacturaVentaDTOResponse;
 import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  *
@@ -11,17 +13,17 @@ import java.util.List;
  */
 public interface FacturaVentaService {
     
-    public List<FacturaVentaDTOResponse> FacturasPendientesBYEmpleado(Long idEmpleado) throws Exception;
+    public Page<FacturaVentaDTOResponse> FacturasPendientesBYEmpleado(Long idEmpleado, Pageable pageable) throws Exception;
      
     public FacturaVentaDTOResponse findFacturaById(Long idFactura) throws Exception;
      
-    public List<FacturaVentaDTOResponse> findLast(Long idEmpleado, Long idCliente) throws Exception;
+    public Page<FacturaVentaDTOResponse> findLast(Long idEmpleado, Long idCliente, Pageable pageable) throws Exception;
      
-    public List<FacturaVentaDTOResponse> getFacturasByCliente(Long idCliente) throws Exception;
+    public Page<FacturaVentaDTOResponse> getFacturasByCliente(Long idCliente, Pageable pageable) throws Exception;
      
-    public List<FacturaVentaDTOResponse> findFacturasByEmpleado(Long idEmpleado) throws Exception;
+    public Page<FacturaVentaDTOResponse> findFacturasByEmpleado(Long idEmpleado, Pageable pageable) throws Exception;
      
-    public List<FacturaVentaDTOResponse> getAll() throws Exception;
+    public Page<FacturaVentaDTOResponse> getAll(Pageable pageable) throws Exception;
      
     public FacturaVenta addFacturaVenta (FacturaVentaDTORequest facturaVentaDTO) throws Exception;
      

@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.casa.san.roque.ferreteria.dao.DescuentoRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 
 /**
  *
@@ -25,8 +28,8 @@ public class DescuentoServiceImpl implements  DescuentoService {
     private ConverterDescuento converterDescuento;
     
     @Override
-    public List<Descuento> getAll() {
-        return repository.findAll();
+    public Page<Descuento> getAll(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
     @Override

@@ -3,6 +3,8 @@ package com.casa.san.roque.ferreteria.service;
 import com.casa.san.roque.ferreteria.model.entity.OrigenProducto;
 import com.casa.san.roque.ferreteria.model.request.OrigenProductoDTORequest;
 import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  *
@@ -12,13 +14,13 @@ public interface OrigenProductoService {
     
     public OrigenProducto findByOrigenProductoId(Long origenProductoId);
     
-    public List<OrigenProducto> findByCaracteristicasProductoId(Long caracteristicasProductoId);
+    public Page<OrigenProducto> findByCaracteristicasProductoId(Long caracteristicasProductoId, Pageable pageable);
     
-    public List<OrigenProducto> findByProductoId(Long productoId);
+    public Page<OrigenProducto> findByProductoId(Long productoId, Pageable pageable);
     
-    public List<OrigenProducto> findByEmpresaId(Long empresaId);
+    public Page<OrigenProducto> findByEmpresaId(Long empresaId, Pageable pageable);
     
-    public List<OrigenProducto> findByEmpresaIdAndProductoId(Long empresaId, Long productoId);
+    public Page<OrigenProducto> findByEmpresaIdAndProductoId(Long empresaId, Long productoId, Pageable pageable);
     
     public OrigenProducto addOrigenProducto(OrigenProducto origenProducto);
     
@@ -31,4 +33,6 @@ public interface OrigenProductoService {
     public OrigenProducto updateOrigenProducto(OrigenProducto origenProducto);
 
     public String deleteOrigenProducto(Long origenProductoId);
+    
+    public Page<OrigenProducto> getAll(Pageable pageable);
 }

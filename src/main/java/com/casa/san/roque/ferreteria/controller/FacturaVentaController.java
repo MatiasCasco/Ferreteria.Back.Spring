@@ -7,11 +7,14 @@ import com.casa.san.roque.ferreteria.model.response.FacturaVentaDTOResponse;
 import com.casa.san.roque.ferreteria.service.FacturaVentaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -43,30 +46,43 @@ public class FacturaVentaController {
     }
     
     @GetMapping("/FacturasByClienteAndEmpleado/{idCliente}/{idEmpleado}")
-    public List<FacturaVentaDTOResponse> findFacturaByClienteByEmpleado(
+    public Page<FacturaVentaDTOResponse> findFacturaByClienteByEmpleado(
             @PathVariable(name = "idCliente", required = true) Long idCliente,
-            @PathVariable(name = "idEmpleado", required = true) Long idEmpleado
+            @PathVariable(name = "idEmpleado", required = true) Long idEmpleado,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
             ) throws Exception{
-        return service.findLast(idEmpleado, idCliente);
+        return service.findLast(idEmpleado, idCliente, PageRequest.of(page, size));
     }
     
     @GetMapping("/FacturasByCliente/{idCliente}")
-    public List<FacturaVentaDTOResponse> findFacturasByCliente(@PathVariable(name = "idCliente", required = true) Long idCliente) throws Exception{
-        return service.getFacturasByCliente(idCliente);
+    public Page<FacturaVentaDTOResponse> findFacturasByCliente(
+            @PathVariable(name = "idCliente", required = true) Long idCliente,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) throws Exception{
+        return service.getFacturasByCliente(idCliente, PageRequest.of(page, size));
     }
     
     @GetMapping("/FacturasPendientesByEmpleado/{idEmpleado}")
-    public List<FacturaVentaDTOResponse> findFacturasPendientesByEmpleado(@PathVariable(name = "idEmpleado", required = true) Long idEmpleado) throws Exception{
-        return service.FacturasPendientesBYEmpleado(idEmpleado);
+    public Page<FacturaVentaDTOResponse> findFacturasPendientesByEmpleado(
+            @PathVariable(name = "idEmpleado", required = true) Long idEmpleado,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) throws Exception{
+        return service.FacturasPendientesBYEmpleado(idEmpleado, PageRequest.of(page, size));
     }
     
     @GetMapping("/FacturasByEmpleado/{idEmpleado}")
-    public List<FacturaVentaDTOResponse> findFacturasByEmpleado(@PathVariable(name = "idEmpleado", required = true) Long idEmpleado) throws Exception{
-        return service.findFacturasByEmpleado(idEmpleado);
+    public Page<FacturaVentaDTOResponse> findFacturasByEmpleado(
+            @PathVariable(name = "idEmpleado", required = true) Long idEmpleado,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) throws Exception{
+        return service.findFacturasByEmpleado(idEmpleado, PageRequest.of(page, size));
     }
     
     @GetMapping("/all")
-    public List<FacturaVentaDTOResponse> getALL() throws Exception{
-        return service.getAll();
+    public Page<FacturaVentaDTOResponse> getALL(
+           @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) throws Exception{
+        return service.getAll(PageRequest.of(page, size));
     }
 }

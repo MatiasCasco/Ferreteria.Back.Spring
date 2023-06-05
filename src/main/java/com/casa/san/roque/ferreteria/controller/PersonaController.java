@@ -4,6 +4,8 @@ import com.casa.san.roque.ferreteria.model.entity.Persona;
 import com.casa.san.roque.ferreteria.service.PersonaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -30,7 +33,7 @@ public class PersonaController {
     }
     
     @PostMapping("/addPersonas")
-    public List<Persona> addPersona(@RequestBody List<Persona> personas) {
+    public List<Persona> addPersonas(@RequestBody List<Persona> personas) {
         return service.addPersonas(personas);
     }
     
@@ -50,18 +53,24 @@ public class PersonaController {
     }
     
     @GetMapping("/empleados")
-    public List<Persona> getEmpleados(){
-        return service.getEmpleados();
+    public Page<Persona> getEmpleados(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size){
+        return service.getEmpleados(PageRequest.of(page, size));
     }
     
     @GetMapping("/clientes")
-    public List<Persona> getClientes(){
-        return service.getClientes();
+    public Page<Persona> getClientes(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size){
+        return service.getClientes(PageRequest.of(page, size));
     }
     
     @GetMapping("/all")
-    public List<Persona> getAll(){
-        return service.findAll();
+    public Page<Persona> getAll(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size){
+        return service.findAll(PageRequest.of(page, size));
     }
     
     @GetMapping("/persona/{rucOci}")
@@ -70,8 +79,10 @@ public class PersonaController {
     }
     
     @GetMapping("/persona/razon_social/{razon}")
-    public List<Persona> getPersonasRazonSocial(@PathVariable(
-            name = "razon", required = true) String razon) {
-        return service.findByPersonaNombreRazonSocial(razon);
+    public Page<Persona> getPersonasRazonSocial(
+            @PathVariable(name = "razon", required = true) String razon,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        return service.findByPersonaNombreRazonSocial(razon, PageRequest.of(page, size));
     }
 }

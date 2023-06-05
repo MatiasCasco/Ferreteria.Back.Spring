@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import org.springframework.transaction.annotation.Transactional;
 import com.casa.san.roque.ferreteria.dao.CaracteristicaProductoRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  *
@@ -46,23 +48,23 @@ public class OrigenProductoServiceImpl implements OrigenProductoService{
     private ConverterOrigenProducto converterOrigenProducto;
     
     @Override
-    public List<OrigenProducto> findByCaracteristicasProductoId(Long caracteristicasProductoId) {
-        return repository.findByIdCaracteristicasWithEmpresaAndCaracteristicasProducto(caracteristicasProductoId);
+    public Page<OrigenProducto> findByCaracteristicasProductoId(Long caracteristicasProductoId, Pageable pageable) {
+        return repository.findByIdCaracteristicasWithEmpresaAndCaracteristicasProducto(caracteristicasProductoId, pageable);
     }
 
     @Override
-    public List<OrigenProducto> findByProductoId(Long productoId) {
-        return repository.findBYIdProductoWithEmpresaAndCaracteristicasProducto(productoId);
+    public Page<OrigenProducto> findByProductoId(Long productoId, Pageable pageable) {
+        return repository.findBYIdProductoWithEmpresaAndCaracteristicasProducto(productoId, pageable);
     }
 
     @Override
-    public List<OrigenProducto> findByEmpresaId(Long empresaId) {
-        return repository.findBYIdEmpresaWithEmpresaAndCaracteristicasProducto(empresaId);
+    public Page<OrigenProducto> findByEmpresaId(Long empresaId, Pageable pageable) {
+        return repository.findBYIdEmpresaWithEmpresaAndCaracteristicasProducto(empresaId, pageable);
     }
 
     @Override
-    public List<OrigenProducto> findByEmpresaIdAndProductoId(Long empresaId, Long productoId) {
-        return repository.findBYIdEmpresaAndIdProductoWithEmpresaAndCaracteristicasProducto(empresaId, productoId);
+    public Page<OrigenProducto> findByEmpresaIdAndProductoId(Long empresaId, Long productoId, Pageable pageable) {
+        return repository.findBYIdEmpresaAndIdProductoWithEmpresaAndCaracteristicasProducto(empresaId, productoId, pageable);
     }
     
     @Transactional
@@ -149,4 +151,7 @@ public class OrigenProductoServiceImpl implements OrigenProductoService{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    public Page<OrigenProducto> getAll(Pageable pageable){
+        return repository.getAll(pageable);
+    }
 }

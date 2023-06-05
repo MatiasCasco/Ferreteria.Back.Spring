@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,8 +27,8 @@ public class ProductoServiceImpl implements ProductoService {
     private CategoriaRepository categoriaRepository;
     
     @Override
-    public List<Producto> getAll() {
-         return repository.findAll();
+    public Page<Producto> getAll(Pageable pageable) {
+         return repository.findAll(pageable);
     }
 
     @Override
@@ -40,13 +42,13 @@ public class ProductoServiceImpl implements ProductoService {
     }
 
     @Override
-    public List<Producto> findByMarcaId(Long marcaId) {
-        return repository.findByIdMarca(marcaId);
+    public Page<Producto> findByMarcaId(Long marcaId, Pageable pageable) {
+        return repository.findByIdMarca(marcaId, pageable);
     }
 
     @Override
-    public List<Producto> findByCategoriaId(Long categoriaId) {
-        return repository.findByIdCategoria(categoriaId);
+    public Page<Producto> findByCategoriaId(Long categoriaId, Pageable pageable) {
+        return repository.findByIdCategoria(categoriaId, pageable);
     }
     
     @Transactional

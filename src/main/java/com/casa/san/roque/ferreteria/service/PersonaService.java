@@ -3,6 +3,8 @@ package com.casa.san.roque.ferreteria.service;
 
 import com.casa.san.roque.ferreteria.model.entity.Persona;
 import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 /**
  *
  * @author Matias Casco
@@ -21,11 +23,11 @@ public interface PersonaService {
 
     public Persona findByRucOCi(String rucOCi);
 
-    public List<Persona> findByPersonaNombreRazonSocial(String personaNombreRazonSocial);
+    public Page<Persona> findByPersonaNombreRazonSocial(String personaNombreRazonSocial, Pageable pageable);
 
-    public List<Persona> findAll();
+    public Page<Persona> findAll(Pageable pageable);
     
-    public List<Persona> getEmpleados();
+    public Page<Persona> getEmpleados(Pageable pageable);
     
-    public List<Persona> getClientes();
+    public Page<Persona> getClientes(Pageable pageable);
 }

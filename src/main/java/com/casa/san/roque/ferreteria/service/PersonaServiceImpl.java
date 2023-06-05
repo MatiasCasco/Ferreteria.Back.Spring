@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -80,23 +82,23 @@ public class PersonaServiceImpl implements PersonaService{
     
     @Override
     @Transactional(readOnly = true)
-    public List<Persona> findByPersonaNombreRazonSocial(String personaNombreRazonSocial) {
-        return repository.findByPersonaNombreRazonSocial(personaNombreRazonSocial);
+    public Page<Persona> findByPersonaNombreRazonSocial(String personaNombreRazonSocial, Pageable pageable) {
+        return repository.findByPersonaNombreRazonSocial(personaNombreRazonSocial, pageable);
     }
     
     @Override
     @Transactional(readOnly = true)
-    public List<Persona> findAll() {
-        return repository.findAll();
+    public Page<Persona> findAll(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
     @Override
-    public List<Persona> getEmpleados() {
-        return repository.getEmpleados();
+    public Page<Persona> getEmpleados(Pageable pageable) {
+        return repository.getEmpleados(pageable);
     }
 
     @Override
-    public List<Persona> getClientes() {
-        return repository.getClientes();
+    public Page<Persona> getClientes(Pageable pageable) {
+        return repository.getClientes(pageable);
     }
 }

@@ -3,6 +3,8 @@ package com.casa.san.roque.ferreteria.service;
 import com.casa.san.roque.ferreteria.model.entity.Descuento;
 import com.casa.san.roque.ferreteria.model.request.DescuentoDTORequest;
 import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  *
@@ -10,7 +12,7 @@ import java.util.List;
  */
 public interface DescuentoService {
     
-    public List<Descuento> getAll();
+    public Page<Descuento> getAll(Pageable pageable);
     
     public Descuento findByDescuentoId(Long descuentoId);
     

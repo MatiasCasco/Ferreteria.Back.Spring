@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.data.domain.Pageable;
 
 /**
  *
@@ -48,12 +47,12 @@ public class MarcaController {
         return service.deleteMarca(idMarca);
     }
 
-@GetMapping("/all")
-public Page<Marca> allMarca(
-        @RequestParam(defaultValue = "0") int page,
-        @RequestParam(defaultValue = "10") int size) {
-    return service.getAll(PageRequest.of(page, size));
-}
+    @GetMapping("/all")
+    public Page<Marca> allMarca(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        return service.getAll(PageRequest.of(page, size));
+    }
 
     @GetMapping("/marcaById/{idMarca}")
     public Marca findByIdMarca(@PathVariable(name = "idMarca", required = true) Long idMarca) {

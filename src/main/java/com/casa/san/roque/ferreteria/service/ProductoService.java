@@ -2,6 +2,8 @@ package com.casa.san.roque.ferreteria.service;
 
 import com.casa.san.roque.ferreteria.model.entity.Producto;
 import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  *
@@ -9,13 +11,13 @@ import java.util.List;
  */
 public interface ProductoService {
     
-    public List<Producto> getAll();
+    public Page<Producto> getAll(Pageable pageable);
     
     public Producto findByProductoId(Long productoId);
     
-    public List<Producto> findByMarcaId(Long marcaId);
+    public Page<Producto> findByMarcaId(Long marcaId, Pageable pageable);
     
-    public List<Producto> findByCategoriaId(Long categoriaId);
+    public Page<Producto> findByCategoriaId(Long categoriaId, Pageable pageable);
     
     public Producto addProducto(Producto producto);
 

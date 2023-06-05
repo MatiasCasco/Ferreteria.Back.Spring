@@ -13,6 +13,9 @@ import com.casa.san.roque.ferreteria.model.response.CajaDetalleDTOResponse;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -56,14 +59,15 @@ public class CajaServiceImpl implements CajaService {
     }
     
     @Override
-    public List<CajaDetalleDTOResponse> obtenerFacturas(Long cajeroId) {
-        List<DetalleCaja> list = new ArrayList<>();
+    public Page<CajaDetalleDTOResponse> obtenerFacturas(Long cajeroId, Pageable pageable) {
+        Page<DetalleCaja> page = repositoryDetalleCaja.findByCaja_CajaEstadoAndCaja_Empleado_PersonaId(ESTADO, cajeroId, pageable);
+        List<DetalleCaja> list = page.getContent();
         List<CajaDetalleDTOResponse> listResponse = new ArrayList<>();
-        list = repositoryDetalleCaja.findByCaja_CajaEstadoAndCaja_Empleado_PersonaId(ESTADO, cajeroId);
         for (DetalleCaja detalleCaja : list) {
             listResponse.add(converterDetalleCaja.toCajaDetalleDTOResponse(detalleCaja));
         }
-        return listResponse;
+        Page<CajaDetalleDTOResponse> responsePage = new PageImpl<>(listResponse, pageable, page.getTotalElements());
+        return responsePage;
     }
 
     @Override

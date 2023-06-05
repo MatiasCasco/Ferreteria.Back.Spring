@@ -17,6 +17,9 @@ import javax.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
 /**
  *
@@ -43,13 +46,15 @@ public class FacturaVentaServiceImpl implements FacturaVentaService {
     private static final String estadoFactura = "INSERTANDO";
     
     @Override
-    public List<FacturaVentaDTOResponse> FacturasPendientesBYEmpleado(Long idEmpleado) throws Exception {
+    public Page<FacturaVentaDTOResponse> FacturasPendientesBYEmpleado(Long idEmpleado, Pageable pageable) throws Exception {
         List<FacturaVentaDTOResponse> listFacturas = new ArrayList<FacturaVentaDTOResponse>();
-        List<FacturaVenta> list = repository.FacturasPendientesBYEmpleado(idEmpleado);
+        Page<FacturaVenta> page = repository.FacturasPendientesBYEmpleado(idEmpleado, pageable);
+        List<FacturaVenta> list = page.getContent();
         for (FacturaVenta factura : list) {
             listFacturas.add(converterFacturaVenta.toFacturaVentaDTO(factura));
         }
-        return listFacturas;
+        Page<FacturaVentaDTOResponse> responsePage = new PageImpl<>(listFacturas, pageable, page.getTotalElements());
+        return responsePage;
     }
 
     @Override
@@ -63,33 +68,39 @@ public class FacturaVentaServiceImpl implements FacturaVentaService {
     }
 
     @Override
-    public List<FacturaVentaDTOResponse> findLast(Long idEmpleado, Long idCliente) throws Exception {
+    public Page<FacturaVentaDTOResponse> findLast(Long idEmpleado, Long idCliente, Pageable pageable) throws Exception {
         List<FacturaVentaDTOResponse> listFacturas = new ArrayList<FacturaVentaDTOResponse>();
-        List<FacturaVenta> list = repository.findLast(idEmpleado, idCliente);
+        Page<FacturaVenta> page = repository.findLast(idEmpleado, idCliente, pageable);
+        List<FacturaVenta> list = page.getContent();
         for (FacturaVenta factura : list) {
             listFacturas.add(converterFacturaVenta.toFacturaVentaDTO(factura));
         }
-        return listFacturas;
+        Page<FacturaVentaDTOResponse> responsePage = new PageImpl<>(listFacturas, pageable, page.getTotalElements());
+        return responsePage;
     }
 
     @Override
-    public List<FacturaVentaDTOResponse> getFacturasByCliente(Long idCliente) throws Exception {
+    public Page<FacturaVentaDTOResponse> getFacturasByCliente(Long idCliente, Pageable pageable) throws Exception {
         List<FacturaVentaDTOResponse> listFacturas = new ArrayList<FacturaVentaDTOResponse>();
-        List<FacturaVenta> list = repository.findFacturasByCliente(idCliente);
+        Page<FacturaVenta> page = repository.findFacturasByCliente(idCliente, pageable);
+        List<FacturaVenta> list = page.getContent();
         for (FacturaVenta factura : list) {
             listFacturas.add(converterFacturaVenta.toFacturaVentaDTO(factura));
         }
-        return listFacturas;
+        Page<FacturaVentaDTOResponse> responsePage = new PageImpl<>(listFacturas, pageable, page.getTotalElements());
+        return responsePage;
     }
 
     @Override
-    public List<FacturaVentaDTOResponse> getAll() throws Exception {
+    public Page<FacturaVentaDTOResponse> getAll(Pageable pageable) throws Exception {
         List<FacturaVentaDTOResponse> listFacturas = new ArrayList<FacturaVentaDTOResponse>();
-        List<FacturaVenta> list = repository.findAll();
+        Page<FacturaVenta> page = repository.findAll(pageable);
+        List<FacturaVenta> list = page.getContent();
         for (FacturaVenta factura : list) {
             listFacturas.add(converterFacturaVenta.toFacturaVentaDTO(factura));
         }
-        return listFacturas;
+        Page<FacturaVentaDTOResponse> responsePage = new PageImpl<>(listFacturas, pageable, page.getTotalElements());
+        return responsePage;
     }
     
     @Transactional
@@ -124,13 +135,15 @@ public class FacturaVentaServiceImpl implements FacturaVentaService {
     }
 
     @Override
-    public List<FacturaVentaDTOResponse> findFacturasByEmpleado(Long idEmpleado) throws Exception {
+    public Page<FacturaVentaDTOResponse> findFacturasByEmpleado(Long idEmpleado, Pageable pageable) throws Exception {
         List<FacturaVentaDTOResponse> listFacturas = new ArrayList<FacturaVentaDTOResponse>();
-        List<FacturaVenta> list = repository.findFacturasByEmpleado(idEmpleado);
+        Page<FacturaVenta> page = repository.findFacturasByEmpleado(idEmpleado, pageable);
+        List<FacturaVenta> list = page.getContent();
         for (FacturaVenta factura : list) {
             listFacturas.add(converterFacturaVenta.toFacturaVentaDTO(factura));
         }
-        return listFacturas;
+        Page<FacturaVentaDTOResponse> responsePage = new PageImpl<>(listFacturas, pageable, page.getTotalElements());
+        return responsePage;
     }
     
 }

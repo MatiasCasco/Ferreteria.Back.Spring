@@ -5,6 +5,8 @@ import com.casa.san.roque.ferreteria.model.request.CajaDetalleDTORequest;
 import com.casa.san.roque.ferreteria.model.response.CajaDTOResponse;
 import com.casa.san.roque.ferreteria.model.response.CajaDetalleDTOResponse;
 import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  *
@@ -16,7 +18,7 @@ public interface CajaService {
     
     public CajaDetalleDTOResponse registrarTransaccion(CajaDetalleDTORequest cajaDetalleDTORequest);
     
-    public List<CajaDetalleDTOResponse> obtenerFacturas(Long cajeroId);
+    public Page<CajaDetalleDTOResponse> obtenerFacturas(Long cajeroId, Pageable pageable);
     
     public CajaDetalleDTOResponse getDetalleCajaById(Long detalleId);
     
