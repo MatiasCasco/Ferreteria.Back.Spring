@@ -1,6 +1,7 @@
 package com.casa.san.roque.ferreteria.controller;
 
 import com.casa.san.roque.ferreteria.model.entity.Producto;
+import com.casa.san.roque.ferreteria.model.request.ProductoDTORequest;
 import com.casa.san.roque.ferreteria.service.ProductoService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +39,8 @@ public class ProductoController {
     }
     
     @PutMapping("/updateProducto")
-    public Producto updateProducto(@RequestBody Producto producto) {
-        return service.updateProducto(producto);
+    public Producto updateProducto(@RequestBody ProductoDTORequest productoDTORequest) {
+        return service.updateProducto(productoDTORequest);
     }
     
     @DeleteMapping("/deleteProducto/{idProducto}")

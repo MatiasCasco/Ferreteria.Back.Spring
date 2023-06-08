@@ -41,8 +41,9 @@ public class Producto implements Serializable {
     @Column(name = "producto_iva")
     private double productoIva;
     
-    @Column(name = "producto_unidad_medida")
-    private String productoUnidadMedida;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "unidad_medida_base_id")
+    private UnidadMedidaBase unidadMedidaBase;
     
     @Column(name = "producto_boolean")
     private boolean productoBoolean;

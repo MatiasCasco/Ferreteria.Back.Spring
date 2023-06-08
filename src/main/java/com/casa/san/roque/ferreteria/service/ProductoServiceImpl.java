@@ -1,9 +1,11 @@
 package com.casa.san.roque.ferreteria.service;
 
+import com.casa.san.roque.ferreteria.converter.ConverterProducto;
 import com.casa.san.roque.ferreteria.dao.CategoriaRepository;
 import com.casa.san.roque.ferreteria.dao.ProductoRepository;
 import com.casa.san.roque.ferreteria.model.entity.Categoria;
 import com.casa.san.roque.ferreteria.model.entity.Producto;
+import com.casa.san.roque.ferreteria.model.request.ProductoDTORequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -25,6 +27,9 @@ public class ProductoServiceImpl implements ProductoService {
     
     @Autowired
     private CategoriaRepository categoriaRepository;
+    
+    @Autowired
+    private ConverterProducto converterProducto;
     
     @Override
     public Page<Producto> getAll(Pageable pageable) {
@@ -74,24 +79,25 @@ public class ProductoServiceImpl implements ProductoService {
     
     @Transactional
     @Override
-    public Producto updateProducto(Producto producto) {
+    public Producto updateProducto(ProductoDTORequest productoDTORequest) {
         Producto oldProducto = null;
-        Optional<Producto> optionalProducto = repository.findById(producto.getProductoId());
+        Optional<Producto> optionalProducto = repository.findById(productoDTORequest.getProductoId());
+        Producto converter = converterProducto.toProducto(productoDTORequest);
         if (optionalProducto.isPresent()){
             oldProducto = optionalProducto.get();
-            oldProducto.setProductoId(producto.getProductoId());
-            oldProducto.setCaracteristicas(producto.getCaracteristicas());
-            oldProducto.setCategoria(producto.getCategoria());
-            oldProducto.setProductoBoolean(producto.isProductoBoolean());
-            oldProducto.setProductoIva(producto.getProductoIva());
-            oldProducto.setProductoNombre(producto.getProductoNombre());
-            oldProducto.setProductoPrecio(producto.getProductoPrecio());
-            oldProducto.setProductoUnidadMedida(producto.getProductoUnidadMedida());
+            oldProducto.setProductoId(converter.getProductoId());
+            oldProducto.setCaracteristicas(converter.getCaracteristicas());
+            oldProducto.setCategoria(converter.getCategoria());
+            oldProducto.setProductoBoolean(converter.isProductoBoolean());
+            oldProducto.setProductoIva(converter.getProductoIva());
+            oldProducto.setProductoNombre(converter.getProductoNombre());
+            oldProducto.setProductoPrecio(converter.getProductoPrecio());
+            oldProducto.setUnidadMedidaBase(converter.getUnidadMedidaBase());
             repository.save(oldProducto);
         } else {
             return new Producto();
         }
-        return producto;
+        return oldProducto;
     }
     
     @Transactional

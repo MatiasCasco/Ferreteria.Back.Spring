@@ -1,6 +1,7 @@
 package com.casa.san.roque.ferreteria.service;
 
 import com.casa.san.roque.ferreteria.model.entity.Producto;
+import com.casa.san.roque.ferreteria.model.request.ProductoDTORequest;
 import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,7 +24,7 @@ public interface ProductoService {
 
     public List<Producto> addProductos(List<Producto> productos);
 
-    public Producto updateProducto(Producto producto);
+    public Producto updateProducto(ProductoDTORequest productoDTORequest);
 
     public String deleteProducto(Long productoId);
 
