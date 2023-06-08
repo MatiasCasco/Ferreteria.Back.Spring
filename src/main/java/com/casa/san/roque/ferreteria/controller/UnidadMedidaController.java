@@ -5,9 +5,12 @@ import com.casa.san.roque.ferreteria.model.entity.UnidadMedidaBase;
 import com.casa.san.roque.ferreteria.service.UnidadMedidaBaseService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -28,8 +31,10 @@ public class UnidadMedidaController {
     }
     
     @GetMapping("/metricas")
-    public List<UnidadMedidaBase> findAllMetricasBase(){
-        return service.getMedidasBase();
+    public Page<UnidadMedidaBase> findAllMetricasBase(
+        @RequestParam(defaultValue = "0") int page,
+        @RequestParam(defaultValue = "10") int size){
+        return service.getMedidasBase(PageRequest.of(page, size));
     }
     
     @GetMapping("/conversionById/{conversionId}")
@@ -39,8 +44,10 @@ public class UnidadMedidaController {
     }
     
     @GetMapping("/conversionesByProductoId/{productoId}")
-    public List<Conversion> findAllMetricasByProducto(
-            @PathVariable(name = "productoId", required = true) Long productoId){
-        return service.getMedidasByProductoId(productoId);
+    public Page<Conversion> findAllMetricasByProducto(
+            @PathVariable(name = "productoId", required = true) Long productoId,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size){
+        return service.getMedidasByProductoId(productoId, PageRequest.of(page, size));
     }
 }

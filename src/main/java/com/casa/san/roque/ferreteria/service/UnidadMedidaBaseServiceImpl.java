@@ -6,6 +6,8 @@ import com.casa.san.roque.ferreteria.model.entity.Conversion;
 import com.casa.san.roque.ferreteria.model.entity.UnidadMedidaBase;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -27,13 +29,13 @@ public class UnidadMedidaBaseServiceImpl implements UnidadMedidaBaseService {
     }
     
     @Override
-    public List<UnidadMedidaBase> getMedidasBase() {
-        return repository.findAll();
+    public Page<UnidadMedidaBase> getMedidasBase(Pageable pageable) {
+        return repository.findAll(pageable);
     }
     
     @Override
-    public List<Conversion> getMedidasByProductoId(Long productoId) {
-        return repositoryConversion.getUnidadesMedidasBYProductoId(productoId);
+    public Page<Conversion> getMedidasByProductoId(Long productoId, Pageable pageable) {
+        return repositoryConversion.getUnidadesMedidasBYProductoId(productoId, pageable);
     }
 
     @Override
