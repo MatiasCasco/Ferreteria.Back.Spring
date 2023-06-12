@@ -32,10 +32,11 @@ public class FacturaVentaController {
     private ConverterFacturaVenta converterFacturaVenta;
     
     @PostMapping("/addFacturaVenta")
-    public FacturaVenta addFacturaVenta(@RequestBody FacturaVentaDTORequest facturaVentaDTO) throws Exception {
+    public FacturaVentaDTOResponse addFacturaVenta(@RequestBody FacturaVentaDTORequest facturaVentaDTO) throws Exception {
         FacturaVenta facturaVenta = new FacturaVenta();
-        facturaVenta = converterFacturaVenta.toFacturaVenta(facturaVentaDTO);
-        return service.addFacturaVenta(facturaVentaDTO); 
+        facturaVenta = service.addFacturaVenta(facturaVentaDTO);
+        FacturaVentaDTOResponse facturaVentaDTOResponse = converterFacturaVenta.toFacturaVentaDTO(facturaVenta);
+        return facturaVentaDTOResponse;         
     }
     
     @GetMapping("/FacturaById/{idFactura}")

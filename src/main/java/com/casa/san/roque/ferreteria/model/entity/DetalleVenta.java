@@ -32,6 +32,7 @@ public class DetalleVenta implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, name = "detalle_venta_id")
     private Long detalleVentaId;
+    
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "factura_venta_id")
@@ -44,8 +45,9 @@ public class DetalleVenta implements Serializable {
     @Column(name = "detalle_venta_cantidad")
     private int detalleVentaCantidad;
     
-    @Column(name = "detalle_venta_unidad_stock")
-    private String detalleVentaUnidadStock;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "unidad_medida_base_id")
+    private UnidadMedidaBase unidadMedidaBase;
     
     @Column(name = "detalle_venta_exentas")
     private double detalleVentaExentas;

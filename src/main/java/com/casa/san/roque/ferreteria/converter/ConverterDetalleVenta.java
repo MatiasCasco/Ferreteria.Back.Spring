@@ -12,6 +12,8 @@ import javax.persistence.Persistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.casa.san.roque.ferreteria.dao.CaracteristicaProductoRepository;
+import com.casa.san.roque.ferreteria.dao.UnidadMedidaBaseRepository;
+import com.casa.san.roque.ferreteria.model.entity.UnidadMedidaBase;
 
 /**
  *
@@ -26,13 +28,16 @@ public class ConverterDetalleVenta {
     @Autowired
     private CaracteristicaProductoRepository repositoryCaracteristicasProducto;
     
+    @Autowired
+    private UnidadMedidaBaseRepository repositoryUnidadMedidaBase;
+    
     public DetalleVentaDTOResponse toDetalleVentaDTO(DetalleVenta detalleVenta) {
         DetalleVentaDTOResponse detalleVentaDTO = new DetalleVentaDTOResponse();
         detalleVentaDTO.setDetalleVentaId(detalleVenta.getDetalleVentaId());
         detalleVentaDTO.setFacturaVentaId(detalleVenta.getFacturaVenta().getFacturaVentaId());
         detalleVentaDTO.setCaracteristicasProductoId(detalleVenta.getCaracteristicasProducto().getCaracteristicasProductoId());
         detalleVentaDTO.setDetalleVentaCantidad(detalleVenta.getDetalleVentaCantidad());
-        detalleVentaDTO.setDetalleVentaUnidadStock(detalleVenta.getDetalleVentaUnidadStock());
+        detalleVentaDTO.setUnidadMedidaBaseId(detalleVenta.getUnidadMedidaBase().getUnidadMedidaBaseId());
         detalleVentaDTO.setDetalleVentaExentas(detalleVenta.getDetalleVentaExentas());
         detalleVentaDTO.setDetalleVentaIva5(detalleVenta.getDetalleVentaIva5());
         detalleVentaDTO.setDetalleVentaIva10(detalleVenta.getDetalleVentaIva10());
@@ -45,11 +50,13 @@ public class ConverterDetalleVenta {
                 .orElseThrow(() -> new IllegalArgumentException("Factura cannot be null"));
         CaracteristicaProducto caracteristicasProducto = repositoryCaracteristicasProducto.findById(detalleVentaDTO.getCaracteristicasProductoId())
                 .orElseThrow(() -> new IllegalArgumentException("Caracteristica Producto cannot be null"));
+        UnidadMedidaBase unidadMedidaBase = repositoryUnidadMedidaBase.findById(detalleVentaDTO.getUnidadMedidaBaseId())
+                .orElseThrow(() -> new IllegalArgumentException("Unidad de medida base cannot be null"));
         DetalleVenta detalleVenta = new DetalleVenta();
         detalleVenta.setFacturaVenta(factura);
         detalleVenta.setCaracteristicasProducto(caracteristicasProducto);
         detalleVenta.setDetalleVentaCantidad(detalleVentaDTO.getDetalleVentaCantidad());
-        detalleVenta.setDetalleVentaUnidadStock(detalleVentaDTO.getDetalleVentaUnidadStock());
+        detalleVenta.setUnidadMedidaBase(unidadMedidaBase);
         detalleVenta.setDetalleVentaExentas(detalleVentaDTO.getDetalleVentaExentas());
         detalleVenta.setDetalleVentaIva5(detalleVentaDTO.getDetalleVentaIva5());
         detalleVenta.setDetalleVentaIva10(detalleVentaDTO.getDetalleVentaIva10());

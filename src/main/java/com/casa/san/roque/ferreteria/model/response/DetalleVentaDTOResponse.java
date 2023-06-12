@@ -22,7 +22,7 @@ public class DetalleVentaDTOResponse {
     
     private int detalleVentaCantidad;
     
-    private String detalleVentaUnidadStock;
+    private Long UnidadMedidaBaseId;
     
     private double detalleVentaExentas;
     
