@@ -13,6 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>ferreteria</name>
     <description>Demo project for Spring Boot</description>
+    <packaging>war</packaging>
     <properties>
         <java.version>8</java.version>
         <maven.jar.plugin>3.3.0</maven.jar.plugin>
@@ -64,9 +65,15 @@
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>${springdoc-openapi-ui-version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
+        <finalName>${artifactId}</finalName> 
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
