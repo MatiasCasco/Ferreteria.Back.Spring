@@ -58,13 +58,13 @@ public class OrigenProductoController {
         return service.deleteOrigenProducto(idOrigenProducto);
     }
     
-    @GetMapping("/opByOrigenProducto/{idOrigenProducto}")
+    @GetMapping("/OrigenProductoById/{idOrigenProducto}")
     public OrigenProducto getOrigenProductoByOrigenProductoId(@PathVariable(
             name = "idOrigenProducto", required = true) Long idOrigenProducto) {
         return service.findByOrigenProductoId(idOrigenProducto);
     }
     
-    @GetMapping("/opByDetalleProducto/{idDetalle}")
+    @GetMapping("/OrigenProductoByDetalleProducto/{idDetalle}")
     public Page<OrigenProducto> getOrigenProductoByCaracteristicaId(
             @PathVariable(name = "idDetalle", required = true) Long idDetalle,
             @RequestParam(defaultValue = "0") int page,
@@ -72,7 +72,7 @@ public class OrigenProductoController {
         return service.findByCaracteristicasProductoId(idDetalle, PageRequest.of(page, size));
     }
     
-    @GetMapping("/opByProducto/{idProducto}")
+    @GetMapping("/OrigenProductoByProducto/{idProducto}")
     public Page<OrigenProducto> getOrigenProductoByProductoId(
             @PathVariable(name = "idProducto", required = true) Long idProducto,
             @RequestParam(defaultValue = "0") int page,
@@ -80,7 +80,7 @@ public class OrigenProductoController {
         return service.findByProductoId(idProducto, PageRequest.of(page, size));
     }
     
-    @GetMapping("/opByEmpresa/{idEmpresa}")
+    @GetMapping("/OrigenProductoByEmpresa/{idEmpresa}")
     public Page<OrigenProducto> getOrigenProductoByEmpresaId(
             @PathVariable(name = "idEmpresa", required = true) Long idEmpresa,
             @RequestParam(defaultValue = "0") int page,
@@ -88,7 +88,7 @@ public class OrigenProductoController {
         return service.findByEmpresaId(idEmpresa, PageRequest.of(page, size));
     }
     
-    @GetMapping("/opByProductoAndByEmpresa/empresa/{idEmpresa}/producto/{idProducto}")
+    @GetMapping("/OrigenProductoByProductoAndByEmpresa/empresa/{idEmpresa}/producto/{idProducto}")
     public Page<OrigenProducto> getOrigenProductoByEmpresaIdAndProductoId(
             @PathVariable(name = "idEmpresa", required = true) Long idEmpresa,
             @PathVariable(name = "idProducto", required = true) Long idProducto,

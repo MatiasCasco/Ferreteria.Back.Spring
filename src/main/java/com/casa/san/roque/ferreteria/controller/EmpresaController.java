@@ -42,7 +42,7 @@ public class EmpresaController {
         return service.deleteEmpresa(idEmpresa);
     }
     
-    @GetMapping("/opByEmpresa/{idEmpresa}")
+    @GetMapping("/empresaById/{idEmpresa}")
     public Empresa getEmpresaByEmpresaId(@PathVariable(
             name = "idEmpresa", required = true) Long idEmpresa) {
         return service.findByEmpresaId(idEmpresa);
