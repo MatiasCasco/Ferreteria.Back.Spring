@@ -4,6 +4,7 @@ import com.casa.san.roque.ferreteria.converter.ConverterCaracterisitcaProducto;
 import com.casa.san.roque.ferreteria.dao.CaracteristicaProductoRepository;
 import com.casa.san.roque.ferreteria.model.entity.CaracteristicaProducto;
 import com.casa.san.roque.ferreteria.model.request.CaracteristicaProductoDTORequest;
+import com.casa.san.roque.ferreteria.model.response.ProductoCajaDTOResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -80,6 +81,15 @@ public class CaracteristicaProductoServiceImpl implements CaracteristicaProducto
     public String deleteCaracteristicaProducto(Long caracteristicaProductoId) {
         repository.deleteById(caracteristicaProductoId);
         return "Eliminacion exitosa del item ".concat(caracteristicaProductoId.toString());
+    }
+
+    @Override
+    public Page<ProductoCajaDTOResponse> findByVar(String variable, Pageable pageable) {
+//        return repository.findByVariable(variable, pageable);
+        Page<CaracteristicaProducto> page = repository.findByVariable(variable, pageable);
+         Page<ProductoCajaDTOResponse> result = page.map(CaracteristicaProducto -> 
+                 converterCaracterisitcaProducto.toProductoCajaDTOResponse(CaracteristicaProducto));
+        return result;
     }
     
 }
