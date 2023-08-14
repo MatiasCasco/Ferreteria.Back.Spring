@@ -8,6 +8,7 @@ import com.casa.san.roque.ferreteria.model.entity.Marca;
 import com.casa.san.roque.ferreteria.model.entity.OrigenProducto;
 import com.casa.san.roque.ferreteria.model.entity.Producto;
 import com.casa.san.roque.ferreteria.model.request.CaracteristicaProductoDTORequest;
+import com.casa.san.roque.ferreteria.model.response.ProductoCajaDTOResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -44,6 +45,18 @@ public class ConverterCaracterisitcaProducto {
         caracteristicaProducto.setProductoStockMax(request.getProductoStockMax());
         caracteristicaProducto.setProductoStockMin(request.getProductoStockMin());
         return caracteristicaProducto;
+    }
+    
+    public ProductoCajaDTOResponse toProductoCajaDTOResponse(CaracteristicaProducto caracteristicaProducto) {
+        ProductoCajaDTOResponse productoCajaDTOResponse = new ProductoCajaDTOResponse();
+        productoCajaDTOResponse.setId(caracteristicaProducto.getProducto().getProductoId());
+        productoCajaDTOResponse.setCategoria(caracteristicaProducto.getProducto().getCategoria().getCategoriaDescripcion());
+        productoCajaDTOResponse.setIva(caracteristicaProducto.getProducto().getProductoIva());
+        productoCajaDTOResponse.setMarca(caracteristicaProducto.getMarca().getMarcaDescripcion());
+        productoCajaDTOResponse.setMedida(caracteristicaProducto.getProducto().getUnidadMedidaBase().getUnidadMedida());
+        productoCajaDTOResponse.setNombre(caracteristicaProducto.getProducto().getProductoNombre());
+        productoCajaDTOResponse.setPrecio(caracteristicaProducto.getProductoPrecio());
+        return productoCajaDTOResponse;
     }
     
 }

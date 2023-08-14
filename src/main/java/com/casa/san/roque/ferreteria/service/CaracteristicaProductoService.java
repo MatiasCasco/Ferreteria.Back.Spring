@@ -2,6 +2,7 @@ package com.casa.san.roque.ferreteria.service;
 
 import com.casa.san.roque.ferreteria.model.entity.CaracteristicaProducto;
 import com.casa.san.roque.ferreteria.model.request.CaracteristicaProductoDTORequest;
+import com.casa.san.roque.ferreteria.model.response.ProductoCajaDTOResponse;
 import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,7 +12,9 @@ import org.springframework.data.domain.Pageable;
  * @author Matias Casco
  */
 public interface CaracteristicaProductoService {
-           
+    
+    public Page<ProductoCajaDTOResponse> findByVar(String variable, Pageable pageable);
+    
     public Page<CaracteristicaProducto> getAll(Pageable pageable);
     
     public CaracteristicaProducto findByCaracteristicaId(Long caracteristicaProductoId);

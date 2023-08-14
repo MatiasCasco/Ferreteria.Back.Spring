@@ -2,6 +2,7 @@ package com.casa.san.roque.ferreteria.controller;
 
 import com.casa.san.roque.ferreteria.model.entity.CaracteristicaProducto;
 import com.casa.san.roque.ferreteria.model.request.CaracteristicaProductoDTORequest;
+import com.casa.san.roque.ferreteria.model.response.ProductoCajaDTOResponse;
 import com.casa.san.roque.ferreteria.service.CaracteristicaProductoService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,5 +61,12 @@ public class CaracteristicaProductoController {
         return service.getAll(PageRequest.of(page, size));
     }
 
-    
+    @GetMapping("/fingByVar/{var}")
+    public Page<ProductoCajaDTOResponse> findByVar(
+            @PathVariable(name = "var", required = false) String variable,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "50") int size
+            ) {
+        return service.findByVar(variable, PageRequest.of(page, size));
+    }
 }
