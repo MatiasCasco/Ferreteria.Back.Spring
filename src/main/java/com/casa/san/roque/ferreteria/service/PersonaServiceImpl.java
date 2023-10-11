@@ -1,7 +1,10 @@
 package com.casa.san.roque.ferreteria.service;
 
+import com.casa.san.roque.ferreteria.converter.ConverterPesona;
 import com.casa.san.roque.ferreteria.dao.PersonaRepository;
 import com.casa.san.roque.ferreteria.model.entity.Persona;
+import com.casa.san.roque.ferreteria.model.request.PersonaDTORequest;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,15 +24,22 @@ public class PersonaServiceImpl implements PersonaService{
     @Autowired
     private PersonaRepository repository;
     
+    @Autowired
+    private ConverterPesona converter;
+    
     @Transactional
     @Override
-    public Persona addPersona(Persona persona) {
+    public Persona addPersona(PersonaDTORequest personaDTO) {
+        Persona persona = new Persona();
+        persona = converter.convertToEntity(personaDTO);
         return repository.save(persona);
     }
     
     @Transactional
     @Override
-    public List<Persona> addPersonas(List<Persona> personas) {
+    public List<Persona> addPersonas(List<PersonaDTORequest> personasDtoList) {
+        List<Persona> personas = new ArrayList<>();
+        personas = converter.convertToEntityList(personasDtoList);
         return repository.saveAll(personas);
     }
     

@@ -1,6 +1,7 @@
 package com.casa.san.roque.ferreteria.controller;
 
 import com.casa.san.roque.ferreteria.model.entity.Persona;
+import com.casa.san.roque.ferreteria.model.request.PersonaDTORequest;
 import com.casa.san.roque.ferreteria.service.PersonaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +29,12 @@ public class PersonaController {
     private PersonaService service;
     
     @PostMapping("/addPersona")
-    public Persona addPersona(@RequestBody Persona persona) {
+    public Persona addPersona(@RequestBody PersonaDTORequest persona) {
         return service.addPersona(persona);
     }
     
     @PostMapping("/addPersonas")
-    public List<Persona> addPersonas(@RequestBody List<Persona> personas) {
+    public List<Persona> addPersonas(@RequestBody List<PersonaDTORequest> personas) {
         return service.addPersonas(personas);
     }
     
