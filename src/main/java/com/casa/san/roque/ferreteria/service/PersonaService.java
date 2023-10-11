@@ -2,6 +2,7 @@
 package com.casa.san.roque.ferreteria.service;
 
 import com.casa.san.roque.ferreteria.model.entity.Persona;
+import com.casa.san.roque.ferreteria.model.request.PersonaDTORequest;
 import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,9 +12,9 @@ import org.springframework.data.domain.Pageable;
  */
 public interface PersonaService {
 
-    public Persona addPersona(Persona persona);
+    public Persona addPersona(PersonaDTORequest persona);
 
-    public List<Persona> addPersonas(List<Persona> personas);
+    public List<Persona> addPersonas(List<PersonaDTORequest> personas);
 
     public Persona updatePersona(Persona persona);
 
