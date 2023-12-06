@@ -22,8 +22,8 @@ public class MarcaServiceImpl implements MarcaService {
     private MarcaRepository repositoryMarca;
     
     @Override
-    public Page<Marca> getAll(Pageable pageable) {
-        return repositoryMarca.findAll(pageable);
+    public List<Marca> getAll() {
+        return repositoryMarca.findAll();
     }
 
     @Override

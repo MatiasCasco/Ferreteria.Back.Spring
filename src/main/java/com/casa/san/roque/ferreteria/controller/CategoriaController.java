@@ -49,10 +49,8 @@ public class CategoriaController {
     }
 
     @GetMapping("/all")
-    public Page<Categoria> allCategoria(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
-        return service.getAll(PageRequest.of(page, size));
+    public List<Categoria> allCategoria() {
+        return service.getAll();
     }
 
     @GetMapping("/categoriaById/{idCategoria}")

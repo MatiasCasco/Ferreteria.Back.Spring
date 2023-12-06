@@ -11,7 +11,7 @@ import org.springframework.data.domain.Pageable;
  */
 public interface MarcaService {
     
-    public Page<Marca> getAll(Pageable pageable);
+    public List<Marca> getAll();
     
     public Marca findByMarcaId(Long marcaId);
     
