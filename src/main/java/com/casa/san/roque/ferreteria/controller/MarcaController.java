@@ -48,10 +48,8 @@ public class MarcaController {
     }
 
     @GetMapping("/all")
-    public Page<Marca> allMarca(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
-        return service.getAll(PageRequest.of(page, size));
+    public List<Marca> allMarca() {
+        return service.getAll();
     }
 
     @GetMapping("/marcaById/{idMarca}")

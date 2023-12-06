@@ -32,10 +32,16 @@ public class ConverterCaracterisitcaProducto {
         CaracteristicaProducto caracteristicaProducto = new CaracteristicaProducto();
         Producto producto = repositoryProducto.findById(request.getProductoId())
                 .orElseThrow(() -> new IllegalArgumentException("Producto cannot be null"));
-        OrigenProducto origenProducto = repositoryOrigenProducto.findById(request.getOrigenProductoId())
-                .orElseThrow(() -> new IllegalArgumentException("Origen Producto cannot be null"));
+        OrigenProducto origenProducto = null;
+        
+        if (request.getOrigenProductoId() != null && request.getOrigenProductoId() > 0) {
+            origenProducto = repositoryOrigenProducto.findById(request.getOrigenProductoId())
+                .orElseThrow(() -> new IllegalArgumentException("Origen Producto not found"));
+        }
+        
         Marca marca = repositoryMarca.findById(request.getMarcaId())
                 .orElseThrow(() -> new IllegalArgumentException("Marca cannot be null"));
+        
         caracteristicaProducto.setMarca(marca);
         caracteristicaProducto.setOrigenProducto(origenProducto);
         caracteristicaProducto.setProducto(producto);
@@ -44,6 +50,7 @@ public class ConverterCaracterisitcaProducto {
         caracteristicaProducto.setProductoStockActual(request.getProductoStockActual());
         caracteristicaProducto.setProductoStockMax(request.getProductoStockMax());
         caracteristicaProducto.setProductoStockMin(request.getProductoStockMin());
+        
         return caracteristicaProducto;
     }
     

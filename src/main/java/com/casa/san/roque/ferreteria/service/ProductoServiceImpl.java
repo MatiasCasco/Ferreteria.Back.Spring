@@ -3,8 +3,10 @@ package com.casa.san.roque.ferreteria.service;
 import com.casa.san.roque.ferreteria.converter.ConverterProducto;
 import com.casa.san.roque.ferreteria.dao.CategoriaRepository;
 import com.casa.san.roque.ferreteria.dao.ProductoRepository;
+import com.casa.san.roque.ferreteria.dao.UnidadMedidaBaseRepository;
 import com.casa.san.roque.ferreteria.model.entity.Categoria;
 import com.casa.san.roque.ferreteria.model.entity.Producto;
+import com.casa.san.roque.ferreteria.model.entity.UnidadMedidaBase;
 import com.casa.san.roque.ferreteria.model.request.ProductoDTORequest;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +29,9 @@ public class ProductoServiceImpl implements ProductoService {
     
     @Autowired
     private CategoriaRepository categoriaRepository;
+    
+    @Autowired
+    private UnidadMedidaBaseRepository metricaRepository;
     
     @Autowired
     private ConverterProducto converterProducto;
@@ -59,8 +64,10 @@ public class ProductoServiceImpl implements ProductoService {
     @Transactional
     @Override
     public Producto addProducto(Producto producto) {
-        Categoria categoria = categoriaRepository.findById(producto.getCategoria().getCategoriaId()).orElse(null);
+        Categoria categoria = categoriaRepository.findById(producto.getCategoria().getCategoriaId()).orElseThrow(() -> new IllegalArgumentException("Categoria cannot be null"));
+        UnidadMedidaBase metrica = metricaRepository.findById(producto.getUnidadMedidaBase().getUnidadMedidaBaseId()).orElseThrow(() -> new IllegalArgumentException("Metrica cannot be null"));
         producto.setCategoria(categoria);
+        producto.setUnidadMedidaBase(metrica);
         return repository.save(producto);
 
     }
@@ -70,8 +77,10 @@ public class ProductoServiceImpl implements ProductoService {
     public List<Producto> addProductos(List<Producto> productos) {
         List<Producto> list = new ArrayList<>();
         for (Producto producto : productos) {
-            Categoria categoria = categoriaRepository.findById(producto.getCategoria().getCategoriaId()).orElse(null);
+            Categoria categoria = categoriaRepository.findById(producto.getCategoria().getCategoriaId()).orElseThrow(() -> new IllegalArgumentException("Categoria cannot be null"));
+            UnidadMedidaBase metrica = metricaRepository.findById(producto.getUnidadMedidaBase().getUnidadMedidaBaseId()).orElseThrow(() -> new IllegalArgumentException("Metrica cannot be null"));
             producto.setCategoria(categoria);
+            producto.setUnidadMedidaBase(metrica);
             list.add(producto);
         }
         return repository.saveAll(list);
